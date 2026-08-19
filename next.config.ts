@@ -11,7 +11,7 @@ const securityHeaders = [
       "img-src 'self' data: blob: https://res.cloudinary.com https://i.ytimg.com https://img.youtube.com",
       "media-src 'self' https://res.cloudinary.com",
       "frame-src https://www.youtube.com https://www.youtube-nocookie.com",
-      "connect-src 'self' https://res.cloudinary.com",
+      "connect-src 'self' https://res.cloudinary.com https://script.google.com https://script.googleusercontent.com",
       "object-src 'none'",
       "base-uri 'self'",
       "form-action 'self'",
