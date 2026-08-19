@@ -409,18 +409,25 @@ class Media {
     if (this.bend === 0) {
       this.plane.position.y = 0;
       this.plane.rotation.z = 0;
+      this.plane.rotation.y = 0;
     } else {
       const B_abs = Math.abs(this.bend);
       const R = (H * H + B_abs * B_abs) / (2 * B_abs);
       const effectiveX = Math.min(Math.abs(x), H);
 
       const arc = R - Math.sqrt(R * R - effectiveX * effectiveX);
+      const angle = Math.asin(effectiveX / R);
+
       if (this.bend > 0) {
-        this.plane.position.y = -arc;
-        this.plane.rotation.z = -Math.sign(x) * Math.asin(effectiveX / R);
+        // Concave Bowl Curve matching reference image:
+        // Center goes deeper inside, side cards curve UP and tilt strongly inward facing center
+        this.plane.position.y = arc * 1.15;
+        this.plane.rotation.y = -Math.sign(x) * angle * 0.95;
+        this.plane.rotation.z = -Math.sign(x) * angle * 0.18;
       } else {
-        this.plane.position.y = arc;
-        this.plane.rotation.z = Math.sign(x) * Math.asin(effectiveX / R);
+        this.plane.position.y = -arc * 1.15;
+        this.plane.rotation.y = Math.sign(x) * angle * 0.95;
+        this.plane.rotation.z = Math.sign(x) * angle * 0.18;
       }
     }
 

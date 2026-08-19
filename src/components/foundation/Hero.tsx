@@ -29,8 +29,8 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
   return (
     <div className="bg-[#F8F6F0] text-[#141414]">
       
-      {/* 1. INITIAL VIEWPORT FOLD (100vh) - Formatted with bottom clearance for floating navbar */}
-      <section className="min-h-screen min-h-[100dvh] pt-16 sm:pt-20 lg:pt-24 pb-24 sm:pb-28 flex flex-col justify-center items-center text-center overflow-hidden px-4 sm:px-8 lg:px-12 relative">
+      {/* 1. INITIAL VIEWPORT FOLD (100vh) */}
+      <section className="min-h-screen min-h-[100dvh] pt-16 sm:pt-20 lg:pt-24 pb-20 sm:pb-24 flex flex-col justify-center items-center text-center overflow-hidden px-4 sm:px-8 lg:px-12 relative">
         <div className="max-w-4xl mx-auto flex flex-col justify-center items-center my-auto">
           
           {/* Official Circular Logo Emblem */}
@@ -87,7 +87,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
             {t.description}
           </motion.p>
 
-          {/* CTA Button - Placed comfortably above the floating bottom navigation bar */}
+          {/* CTA Button */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -107,20 +107,20 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
         </div>
       </section>
 
-      {/* 2. GALLERY & PILLARS SECTION - Appears when scrolling down below the initial viewport fold */}
-      <section className="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
+      {/* 2. GALLERY & PILLARS SECTION - Concave Bowl Curve matching exact reference image */}
+      <section className="pt-6 sm:pt-10 pb-16 sm:pb-24 max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
         {/* React Bits Circular Gallery WebGL Component */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.9 }}
           className="relative max-w-7xl mx-auto"
         >
           <div style={{ height: '460px', position: 'relative' }}>
             <CircularGallery
               items={GALLERY_ITEMS}
-              bend={1.8}
+              bend={2.5}
               textColor="#141414"
               borderRadius={0.06}
               scrollEase={0.05}
@@ -131,7 +131,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
         </motion.div>
 
         {/* 3 Minimal Text Columns Below the Gallery */}
-        <div className="mt-12 sm:mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 text-left max-w-5xl mx-auto pt-10 border-t border-[#E8E4D9]">
+        <div className="mt-8 sm:mt-14 grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 text-left max-w-5xl mx-auto pt-10 border-t border-[#E8E4D9]">
           {t.cols.map((col, idx) => (
             <div key={idx}>
               <h3 className="text-sm font-semibold text-[#141414] tracking-tight uppercase mb-2">
@@ -148,3 +148,5 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
     </div>
   );
 };
+
+export default Hero;
