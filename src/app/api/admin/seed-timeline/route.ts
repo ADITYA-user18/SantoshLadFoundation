@@ -1,0 +1,196 @@
+/**
+ * POST /api/admin/seed-timeline
+ * Seeds all static PROJECTS timeline items into MongoDB so the admin can edit them.
+ * Protected by SEED_SECRET. Safe to run multiple times — skips items that already exist.
+ */
+import { NextRequest, NextResponse } from "next/server";
+import { connectDB } from "@/lib/db/mongoose";
+import { TimelineItemModel } from "@/lib/db/models/TimelineItem";
+
+const TIMELINE_SEED = [
+  {
+    itemId: "2002-sandur-council",
+    year: "2002",
+    title: "Sandur Town Municipal Council",
+    titleKn: "ಸಂಡೂರು ಪಟ್ಟಣ ಪುರಸಭೆ",
+    text: "Elected for the first time as a Member of the Sandur Town Municipal Council in Ballari district, marking the beginning of his public and political journey.",
+    textKn: "ಬಳ್ಳಾರಿ ಜಿಲ್ಲೆಯ ಸಂಡೂರು ಪಟ್ಟಣ ಪುರಸಭೆಯ ಸದಸ್ಯರಾಗಿ ಮೊದಲ ಬಾರಿಗೆ ಆಯ್ಕೆಯಾಗಿ ಸಾರ್ವಜನಿಕ ಮತ್ತು ರಾಜಕೀಯ ಪ್ರಯಾಣವನ್ನು ಆರಂಭಿಸಿದರು.",
+    image: "/images/work/oath.jpg",
+    order: 1,
+  },
+  {
+    itemId: "2004-mla-sandur",
+    year: "2004",
+    title: "First term as MLA, Sandur",
+    titleKn: "ಮೊದಲ ಅವಧಿ ಶಾಸಕರು, ಸಂಡೂರು",
+    text: "Contested the Karnataka Legislative Assembly election from the Sandur Constituency on a Janata Dal (Secular) ticket and secured a remarkable mandate, entering the Karnataka Legislative Assembly for the first time.",
+    textKn: "ಜನತಾ ದಳ (ಜಾತ್ಯಾತೀತ) ಟಿಕೆಟ್‌ನಲ್ಲಿ ಸಂಡೂರು ಕ್ಷೇತ್ರದಿಂದ ಕರ್ನಾಟಕ ವಿಧಾನಸಭಾ ಚುನಾವಣೆಗೆ ಸ್ಪರ್ಧಿಸಿ ಗಮನಾರ್ಹ ಜನಾದೇಶ ಪಡೆದು ಮೊದಲ ಬಾರಿಗೆ ವಿಧಾನಸಭೆಗೆ ಪ್ರವೇಶಿಸಿದರು.",
+    image: "/images/portraits/hero.jpg",
+    order: 2,
+  },
+  {
+    itemId: "2007-joined-inc",
+    year: "2007",
+    title: "Joined Indian National Congress",
+    titleKn: "ಭಾರತೀಯ ರಾಷ್ಟ್ರೀಯ ಕಾಂಗ್ರೆಸ್ ಸೇರ್ಪಡೆ",
+    text: "Joined the Indian National Congress under the guidance and leadership of Shri Siddaramaiah amidst the changing political landscape of the state.",
+    textKn: "ರಾಜ್ಯದ ಬದಲಾಗುತ್ತಿದ್ದ ರಾಜಕೀಯ ಪರಿಸರದಲ್ಲಿ ಶ್ರೀ ಸಿದ್ದರಾಮಯ್ಯ ಅವರ ಮಾರ್ಗದರ್ಶನ ಮತ್ತು ನಾಯಕತ್ವದಲ್ಲಿ ಭಾರತೀಯ ರಾಷ್ಟ್ರೀಯ ಕಾಂಗ್ರೆಸ್ ಸೇರಿದರು.",
+    image: "/images/portraits/namaste.jpg",
+    order: 3,
+  },
+  {
+    itemId: "2008-mla-kalaghatagi",
+    year: "2008",
+    title: "Second term, Kalaghatagi",
+    titleKn: "ಎರಡನೇ ಅವಧಿ, ಕಲಘಟಗಿ",
+    text: "Following the constituency delimitation process, Sandur was reserved as a Scheduled Tribe constituency. He contested from the Kalaghatagi Assembly Constituency in Dharwad district and registered a resounding victory.",
+    textKn: "ಕ್ಷೇತ್ರ ಪುನರ್‌ವಿಂಗಡಣೆಯ ನಂತರ ಸಂಡೂರು ಪರಿಶಿಷ್ಟ ಪಂಗಡಕ್ಕೆ ಮೀಸಲಾಯಿತು. ಧಾರವಾಡ ಜಿಲ್ಲೆಯ ಕಲಘಟಗಿ ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರದಿಂದ ಸ್ಪರ್ಧಿಸಿ ಅಭೂತಪೂರ್ವ ಗೆಲುವು ಸಾಧಿಸಿ ಎರಡನೇ ಅವಧಿಗೆ ಶಾಸಕರಾದರು.",
+    image: "/images/portraits/about.jpg",
+    order: 4,
+  },
+  {
+    itemId: "2010-kpcc-gen-sec",
+    year: "2010",
+    title: "KPCC General Secretary",
+    titleKn: "ಕೆಪಿಸಿಸಿ ಸಾಮಾನ್ಯ ಕಾರ್ಯದರ್ಶಿ",
+    text: "Appointed as General Secretary of the Karnataka Pradesh Congress Committee, where he played a significant role in strengthening and expanding the party organisation across the state.",
+    textKn: "ಕರ್ನಾಟಕ ಪ್ರದೇಶ ಕಾಂಗ್ರೆಸ್ ಸಮಿತಿಯ ಸಾಮಾನ್ಯ ಕಾರ್ಯದರ್ಶಿಯಾಗಿ ನೇಮಕಗೊಂಡು ರಾಜ್ಯಾದ್ಯಂತ ಪಕ್ಷ ಸಂಘಟನೆಯನ್ನು ಬಲಪಡಿಸುವಲ್ಲಿ ಮಹತ್ವದ ಪಾತ್ರ ವಹಿಸಿದರು.",
+    image: "/images/work/students.jpg",
+    order: 5,
+  },
+  {
+    itemId: "2010-ballari-padayatra",
+    year: "2010",
+    title: "Ballari Padayatra",
+    titleKn: "ಬಳ್ಳಾರಿ ಪಾದಯಾತ್ರೆ",
+    text: "Participated in the historic Ballari Padayatra, a landmark movement in Karnataka's political history.",
+    textKn: "ಕರ್ನಾಟಕದ ರಾಜಕೀಯ ಇತಿಹಾಸದಲ್ಲಿ ಮೈಲಿಗಲ್ಲಾದ ಐತಿಹಾಸಿಕ ಬಳ್ಳಾರಿ ಪಾದಯಾತ್ರೆಯಲ್ಲಿ ಭಾಗವಹಿಸಿದರು.",
+    image: "/images/work/children.jpg",
+    order: 6,
+  },
+  {
+    itemId: "2011-kpcc-raichur",
+    year: "2011",
+    title: "KPCC in-charge, Raichur",
+    titleKn: "ಕೆಪಿಸಿಸಿ ಉಸ್ತುವಾರಿ, ರಾಯಚೂರು",
+    text: "Appointed by the KPCC as the party's in-charge for Raichur district, further contributing to organisational development and grassroots outreach.",
+    textKn: "ಕೆಪಿಸಿಸಿಯಿಂದ ರಾಯಚೂರು ಜಿಲ್ಲೆಯ ಪಕ್ಷ ಉಸ್ತುವಾರಿಯಾಗಿ ನೇಮಕಗೊಂಡು ಸಂಘಟನಾ ಅಭಿವೃದ್ಧಿ ಮತ್ತು ತಳಮಟ್ಟದ ಸಂಪರ್ಕಕ್ಕೆ ಕೊಡುಗೆ ನೀಡಿದರು.",
+    image: "/images/work/gig-meet.jpg",
+    order: 7,
+  },
+  {
+    itemId: "2013-third-term",
+    year: "2013",
+    title: "Third term, Landslide mandate",
+    titleKn: "ಮೂರನೇ ಅವಧಿ, ಭಾರಿ ಜನಾದೇಶ",
+    text: "Achieved a landslide victory from the Kalaghatagi Assembly Constituency with a margin of over 45,600 votes, earning a third consecutive term in the Karnataka Legislative Assembly.",
+    textKn: "ಕಲಘಟಗಿ ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರದಿಂದ 45,600ಕ್ಕೂ ಹೆಚ್ಚು ಮತಗಳ ಅಂತರದಲ್ಲಿ ಭಾರಿ ಗೆಲುವು ಸಾಧಿಸಿ ಸತತ ಮೂರನೇ ಅವಧಿಗೆ ಕರ್ನಾಟಕ ವಿಧಾನಸಭೆಗೆ ಆಯ್ಕೆಯಾದರು.",
+    image: "/images/work/health-launch.jpg",
+    order: 8,
+  },
+  {
+    itemId: "2013-info-minister",
+    year: "2013",
+    title: "Minister for Information & Infra",
+    titleKn: "ಮಾಹಿತಿ, ಸಾರ್ವಜನಿಕ ಸಂಪರ್ಕ ಮತ್ತು ಮೂಲಸೌಕರ್ಯ ಅಭಿವೃದ್ಧಿ ಸಚಿವರು",
+    text: "Sworn in as Minister for Information and Public Relations and Infrastructure Development in the cabinet led by Chief Minister Shri Siddaramaiah.",
+    textKn: "ಮುಖ್ಯಮಂತ್ರಿ ಶ್ರೀ ಸಿದ್ದರಾಮಯ್ಯ ನೇತೃತ್ವದ ಸಂಪುಟದಲ್ಲಿ ಮಾಹಿತಿ ಮತ್ತು ಸಾರ್ವಜನಿಕ ಸಂಪರ್ಕ ಹಾಗೂ ಮೂಲಸೌಕರ್ಯ ಅಭಿವೃದ್ಧಿ ಸಚಿವರಾಗಿ ಪ್ರಮಾಣವಚನ ಸ್ವೀಕರಿಸಿದರು.",
+    image: "/images/work/oath.jpg",
+    order: 9,
+  },
+  {
+    itemId: "2013-uttarakhand-rescue",
+    year: "2013",
+    title: "Uttarakhand Rescue Operation",
+    titleKn: "ಉತ್ತರಾಖಂಡ ರಕ್ಷಣಾ ಕಾರ್ಯ",
+    text: "During the devastating Uttarakhand floods, he was entrusted with the responsibility of rescuing stranded Kannadigas. Through his dedicated efforts, all affected citizens were safely brought back to Karnataka.",
+    textKn: "ಉತ್ತರಾಖಂಡದ ವಿನಾಶಕಾರಿ ಪ್ರವಾಹದಲ್ಲಿ ಸಿಲುಕಿದ್ದ ಕನ್ನಡಿಗರನ್ನು ರಕ್ಷಿಸುವ ಹೊಣೆ ವಹಿಸಲಾಯಿತು. ಸಮರ್ಪಿತ ಪ್ರಯತ್ನದಿಂದ ಎಲ್ಲಾ ಪೀಡಿತರನ್ನು ಸುರಕ್ಷಿತವಾಗಿ ಕರ್ನಾಟಕಕ್ಕೆ ಕರೆತಂದು ಮೆಚ್ಚುಗೆ ಪಡೆದರು.",
+    image: "/images/rescue/pahalgam.jpg",
+    order: 10,
+  },
+  {
+    itemId: "2016-labour-minister",
+    year: "2016",
+    title: "Minister for Labour & Skill",
+    titleKn: "ಕಾರ್ಮಿಕ ಮತ್ತು ಕೌಶಲ್ಯ ಅಭಿವೃದ್ಧಿ ಸಚಿವರು",
+    text: "Assumed office as Minister for Labour and Skill Development, ushering in a series of transformative reforms and welfare initiatives for workers and youth across Karnataka.",
+    textKn: "ಕಾರ್ಮಿಕ ಮತ್ತು ಕೌಶಲ್ಯ ಅಭಿವೃದ್ಧಿ ಸಚಿವರಾಗಿ ಅಧಿಕಾರ ವಹಿಸಿ, ಕರ್ನಾಟಕದಾದ್ಯಂತ ಕಾರ್ಮಿಕರು ಮತ್ತು ಯುವಜನರಿಗೆ ಪರಿವರ್ತನಕಾರಿ ಸುಧಾರಣೆಗಳು ಮತ್ತು ಕಲ್ಯಾಣ ಉಪಕ್ರಮಗಳನ್ನು ತಂದರು.",
+    image: "/images/work/gig-meet.jpg",
+    order: 11,
+  },
+  {
+    itemId: "2022-bharat-jodo",
+    year: "2022",
+    title: "Bharat Jodo Yatra & KPCC VP",
+    titleKn: "ಭಾರತ ಜೋಡೋ ಯಾತ್ರೆ & ಕೆಪಿಸಿಸಿ ಉಪಾಧ್ಯಕ್ಷರು",
+    text: "Actively participated in the historic Bharat Jodo Yatra alongside Shri Rahul Gandhi and appointed Vice President of the Karnataka Pradesh Congress Committee.",
+    textKn: "ಐತಿಹಾಸಿಕ ಭಾರತ ಜೋಡೋ ಯಾತ್ರೆಯಲ್ಲಿ ಶ್ರೀ ರಾಹುಲ್ ಗಾಂಧಿ ಅವರೊಂದಿಗೆ ನಡೆದು ಕೆಪಿಸಿಸಿ ಉಪಾಧ್ಯಕ್ಷರಾಗಿ ಸೇವೆ ಸಲ್ಲಿಸಿದರು.",
+    image: "/images/portraits/hero.jpg",
+    order: 12,
+  },
+  {
+    itemId: "2023-fourth-term",
+    year: "2023",
+    title: "Fourth term as MLA",
+    titleKn: "ನಾಲ್ಕನೇ ಅವಧಿ ಶಾಸಕರು",
+    text: "Re-elected from the Kalaghatagi Assembly Constituency, securing his fourth term as a Member of the Karnataka Legislative Assembly.",
+    textKn: "ಕಲಘಟಗಿ ವಿಧಾನಸಭಾ ಕ್ಷೇತ್ರದಿಂದ ಮರು ಆಯ್ಕೆಯಾಗಿ ಕರ್ನಾಟಕ ವಿಧಾನಸಭೆಯಲ್ಲಿ ನಾಲ್ಕನೇ ಅವಧಿಗೆ ಶಾಸಕರಾದರು.",
+    image: "/images/portraits/namaste.jpg",
+    order: 13,
+  },
+  {
+    itemId: "2023-labour-minister-current",
+    year: "2023",
+    title: "Minister for Labour",
+    titleKn: "ಕಾರ್ಮಿಕ ಸಚಿವರು",
+    text: "Inducted into the Government of Karnataka as Minister for Labour on 27 May 2023.",
+    textKn: "ಕರ್ನಾಟಕ ಸರ್ಕಾರಕ್ಕೆ ಕಾರ್ಮಿಕ ಸಚಿವರಾಗಿ ಸೇರ್ಪಡೆಯಾದರು.",
+    image: "/images/work/oath.jpg",
+    order: 14,
+  },
+  {
+    itemId: "2023-dharwad-incharge",
+    year: "2023",
+    title: "District In-charge Minister, Dharwad",
+    titleKn: "ಜಿಲ್ಲಾ ಉಸ್ತುವಾರಿ ಸಚಿವರು, ಧಾರವಾಡ",
+    text: "Appointed as the District In-charge Minister for Dharwad on 9 June 2023, taking on the responsibility of overseeing developmental initiatives across the district.",
+    textKn: "ಧಾರವಾಡ ಜಿಲ್ಲಾ ಉಸ್ತುವಾರಿ ಸಚಿವರಾಗಿ ನೇಮಕಗೊಂಡು ಜಿಲ್ಲೆಯಾದ್ಯಂತ ಅಭಿವೃದ್ಧಿ ಉಪಕ್ರಮಗಳ ಮೇಲ್ವಿಚಾರಣೆ ಹೊಣೆ ವಹಿಸಿದರು.",
+    image: "/images/portraits/about.jpg",
+    order: 15,
+  },
+];
+
+export async function POST(req: NextRequest) {
+  try {
+    const body = (await req.json()) as { secret?: string };
+    const seedSecret = process.env.SEED_SECRET;
+
+    if (!seedSecret || body.secret !== seedSecret) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
+
+    await connectDB();
+
+    let created = 0;
+    let skipped = 0;
+
+    for (const item of TIMELINE_SEED) {
+      const existing = await TimelineItemModel.findOne({ itemId: item.itemId });
+      if (existing) {
+        skipped++;
+        continue;
+      }
+      await TimelineItemModel.create(item);
+      created++;
+    }
+
+    return NextResponse.json({
+      ok: true,
+      message: `Timeline seeded: ${created} created, ${skipped} already existed.`,
+      total: TIMELINE_SEED.length,
+    });
+  } catch (err) {
+    console.error("Timeline seed error:", err);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
+  }
+}

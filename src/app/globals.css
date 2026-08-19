@@ -1,0 +1,275 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Baloo+Bhai+2:wght@400..800&family=Iosevka+Charon:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+.font-brand-nav {
+  font-family: "Baloo Bhai 2", "Ubuntu", "Open Sans", sans-serif;
+}
+.font-audiowide {
+  font-family: "Audiowide", cursive;
+}
+.font-baloo {
+  font-family: "Baloo Bhai 2", sans-serif;
+}
+.font-charon {
+  font-family: "Iosevka Charon", monospace;
+}
+.font-opensans {
+  font-family: "Open Sans", sans-serif;
+}
+.font-ubuntu {
+  font-family: "Ubuntu", sans-serif;
+}
+
+.font-editorial {
+  font-family: 'Instrument Serif', Georgia, serif;
+}
+
+.font-reading {
+  font-family: 'Newsreader', Georgia, serif;
+}
+
+.font-sans-clean {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Carousel fonts */
+@font-face {
+  font-family: "Satoshi";
+  src: url("/Satoshi-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/Satoshi-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/Geist-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Neue Montreal";
+  src: url("/ppneuemontreal-book.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-navy: #0e1c40;
+  --color-charcoal: var(--charcoal);
+  --color-muted: var(--muted);
+  --color-mist: var(--mist);
+  --color-line: var(--line);
+  --color-saffron: #ff9933;
+  --color-saffron-deep: #e67a14;
+  --color-forest: #138808;
+  --color-forest-deep: #0d6b06;
+  --color-congress: #000080;
+  --color-pill: var(--pill);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  --bg: #f8f3ea;
+  --surface: #fff7ee;
+  --paper: #ffffff;
+  --ink: #0e1c40;
+  --charcoal: #242424;
+  --muted: #5e5d59;
+  --mist: #e6dccf;
+  --line: #eadfd0;
+  --pill: #0e1c40;
+}
+
+.dark {
+  --bg: #070d18;
+  --surface: #0e172a;
+  --paper: #131f38;
+  --ink: #f8fafc;
+  --charcoal: #cbd5e1;
+  --muted: #94a3b8;
+  --mist: #1e293b;
+  --line: #1e2a44;
+  --pill: #1e293b;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-bg);
+}
+
+html.lang-kn {
+  --font-sans: var(--font-kn-sans);
+  --font-display: var(--font-kn-serif);
+}
+
+html.lang-kn body {
+  font-family: var(--font-kn-sans), var(--font-sans), ui-sans-serif, sans-serif;
+}
+
+html.lang-kn .font-display,
+html.lang-kn h1,
+html.lang-kn h2,
+html.lang-kn h3 {
+  font-family: var(--font-kn-serif), var(--font-display), ui-serif, serif;
+}
+
+html.lang-kn .uppercase {
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-saffron) 82%, #111);
+  color: #fff;
+}
+
+.font-display {
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+}
+
+.texture-grain {
+  background-image:
+    repeating-linear-gradient(
+      135deg,
+      rgba(17, 17, 17, 0.025) 0px,
+      rgba(17, 17, 17, 0.025) 1px,
+      transparent 1px,
+      transparent 10px
+    );
+}
+
+.dark .texture-grain {
+  background-image:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.015) 0px,
+      rgba(255, 255, 255, 0.015) 1px,
+      transparent 1px,
+      transparent 10px
+    );
+}
+
+.texture-fine {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+}
+
+.img-mono {
+  filter: none;
+}
+
+.marquee-track {
+  animation: marquee 42s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition:
+    opacity 900ms var(--ease-editorial),
+    transform 900ms var(--ease-editorial);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.reveal-delay-1 {
+  transition-delay: 80ms;
+}
+.reveal-delay-2 {
+  transition-delay: 160ms;
+}
+.reveal-delay-3 {
+  transition-delay: 240ms;
+}
+.reveal-delay-4 {
+  transition-delay: 320ms;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .marquee-track,
+  .reveal,
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
