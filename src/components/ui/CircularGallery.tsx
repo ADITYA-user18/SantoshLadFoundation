@@ -326,7 +326,7 @@ class Media {
         void main() {
           vUv = uv;
           vec3 p = position;
-          p.z = (sin(p.x * 4.0 + uTime) * 1.5 + cos(p.y * 2.0 + uTime) * 1.5) * (0.1 + uSpeed * 0.5);
+          p.z = (sin(p.x * 4.0 + uTime) * 1.5 + cos(p.y * 2.0 + uTime) * 1.5) * (0.01 + uSpeed * 0.08);
           gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
         }
       `,
@@ -408,27 +408,30 @@ class Media {
 
     if (this.bend === 0) {
       this.plane.position.y = 0;
+      this.plane.position.z = 0;
       this.plane.rotation.z = 0;
       this.plane.rotation.y = 0;
     } else {
-      const B_abs = Math.abs(this.bend);
-      const R = (H * H + B_abs * B_abs) / (2 * B_abs);
-      const effectiveX = Math.min(Math.abs(x), H);
+      const normalizedX = Math.min(Math.abs(x) / H, 1.25);
+      const signX = Math.sign(x);
 
-      const arc = R - Math.sqrt(R * R - effectiveX * effectiveX);
-      const angle = Math.asin(effectiveX / R);
+      // Exact 3D Concave Arena Arc matching reference image:
+      // Center card is recessed (-Z) and lower (y=0).
+      // Side cards curve forward (+Z), rise in Y, and rotate inward to face center.
+      const curveY = Math.pow(normalizedX, 1.85) * 1.35 * Math.sign(this.bend);
+      const curveZ = Math.pow(normalizedX, 1.3) * 2.4 * Math.sign(this.bend);
 
-      if (this.bend > 0) {
-        // Concave Bowl Curve matching reference image:
-        // Center goes deeper inside, side cards curve UP and tilt strongly inward facing center
-        this.plane.position.y = arc * 1.15;
-        this.plane.rotation.y = -Math.sign(x) * angle * 0.95;
-        this.plane.rotation.z = -Math.sign(x) * angle * 0.18;
-      } else {
-        this.plane.position.y = -arc * 1.15;
-        this.plane.rotation.y = Math.sign(x) * angle * 0.95;
-        this.plane.rotation.z = Math.sign(x) * angle * 0.18;
-      }
+      this.plane.position.y = curveY;
+      this.plane.position.z = curveZ;
+
+      // Inward Y rotation: left cards (signX < 0) rotate positive (facing right/center),
+      // right cards (signX > 0) rotate negative (facing left/center)
+      const rotY = -signX * Math.pow(normalizedX, 0.85) * 0.55 * Math.sign(this.bend);
+      // Subtle Z tilt following curve
+      const rotZ = -signX * Math.pow(normalizedX, 1.5) * 0.14 * Math.sign(this.bend);
+
+      this.plane.rotation.y = rotY;
+      this.plane.rotation.z = rotZ;
     }
 
     this.speed = scroll.current - scroll.last;
@@ -457,12 +460,12 @@ class Media {
         this.plane.program.uniforms.uViewportSizes.value = [this.viewport.width, this.viewport.height];
       }
     }
-    // Reduced image height slightly (780 multiplier on plane.scale.y)
-    this.scale = (this.screen.height / 1500) * 1.25;
-    this.plane.scale.y = (this.viewport.height * (780 * this.scale)) / this.screen.height;
-    this.plane.scale.x = (this.viewport.width * (750 * this.scale)) / this.screen.width;
+    // Sleek tall portrait cards (470 x 820 ratio) matching reference image aspect ratio
+    this.scale = (this.screen.height / 1300) * 1.15;
+    this.plane.scale.y = (this.viewport.height * (820 * this.scale)) / this.screen.height;
+    this.plane.scale.x = (this.viewport.width * (470 * this.scale)) / this.screen.width;
     this.plane.program.uniforms.uPlaneSizes.value = [this.plane.scale.x, this.plane.scale.y];
-    this.padding = 2.1;
+    this.padding = 0.45;
     this.width = this.plane.scale.x + this.padding;
     this.widthTotal = this.width * this.length;
     this.x = this.width * this.index;
@@ -741,7 +744,7 @@ export default function CircularGallery({
   items,
   bend = 3,
   textColor = '#141414',
-  borderRadius = 0.05,
+  borderRadius = 0,
   font = 'bold 22px Figtree',
   fontUrl,
   scrollSpeed = 2,

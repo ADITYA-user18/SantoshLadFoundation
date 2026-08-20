@@ -184,14 +184,18 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9 }}
-          className="relative max-w-7xl mx-auto"
+          className="relative max-w-7xl mx-auto overflow-hidden"
         >
-          <div style={{ height: '460px', position: 'relative' }}>
+          {/* Side Fade Vignette Overlays matching reference image */}
+          <div className="absolute top-0 left-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-[#F8F6F0] via-[#F8F6F0]/80 to-transparent pointer-events-none z-10" />
+          <div className="absolute top-0 right-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-[#F8F6F0] via-[#F8F6F0]/80 to-transparent pointer-events-none z-10" />
+
+          <div style={{ height: '520px', position: 'relative' }}>
             <CircularGallery
               items={GALLERY_ITEMS}
               bend={2.5}
               textColor="#141414"
-              borderRadius={0.06}
+              borderRadius={0.02}
               scrollEase={0.05}
               font="bold 22px Figtree"
               scrollSpeed={2}
