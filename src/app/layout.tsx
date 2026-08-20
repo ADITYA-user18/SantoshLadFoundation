@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Serif_Display, Inter, Noto_Sans_Kannada, Noto_Serif_Kannada } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import { SiteShell } from "@/components/site/SiteShell";
 import { ThemeProvider } from "@/components/site/ThemeProvider";
 import { site } from "@/data/content";
@@ -191,6 +192,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <SiteShell>{children}</SiteShell>
           </LanguageProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
