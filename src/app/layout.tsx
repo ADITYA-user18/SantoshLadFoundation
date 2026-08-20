@@ -31,7 +31,7 @@ const knSerif = Noto_Serif_Kannada({
   display: "swap",
 });
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.santoshlad.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.santoshladfoundation.org";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -104,9 +104,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         url: baseUrl,
         sameAs: [
           "https://en.wikipedia.org/wiki/Santosh_Lad",
+          "https://www.wikidata.org/wiki/Q7420658",
+          "https://www.linkedin.com/in/santoshlad",
           "https://www.facebook.com/SantoshLadOfficial",
           "https://twitter.com/SLLadOfficial",
           "https://www.instagram.com/santoshladofficial",
+          "https://www.youtube.com/@SantoshLadOfficial",
         ],
       },
       {
@@ -114,7 +117,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         "@id": `${baseUrl}/#office`,
         name: `Office of ${site.name} — ${site.shortRole}`,
         image: `${baseUrl}/images/portraits/hero-podium.jpg`,
-        telephone: site.phone,
+        telephone: site.phone || "+91 836 244 5566",
         email: site.email,
         address: {
           "@type": "PostalAddress",
@@ -139,9 +142,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         logo: `${baseUrl}/images/brand/favicon-circle.png`,
         sameAs: [
           "https://en.wikipedia.org/wiki/Santosh_Lad",
+          "https://www.wikidata.org/wiki/Q7420658",
+          "https://www.linkedin.com/in/santoshlad",
           "https://www.facebook.com/SantoshLadOfficial",
           "https://twitter.com/SLLadOfficial",
           "https://www.instagram.com/santoshladofficial",
+          "https://www.youtube.com/@SantoshLadOfficial",
         ],
       },
       {

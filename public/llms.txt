@@ -1,17 +1,18 @@
-# Santosh S. Lad — Official Website
+# Santosh Lad Foundation
+> Official web platform of Santosh S. Lad — Minister for Labour, Government of Karnataka, and Member of Legislative Assembly (MLA) from Kalaghatagi constituency.
 
-> Official website of Santosh S. Lad, Minister for Labour, Government of Karnataka, and Member of Legislative Assembly (MLA) from Kalaghatagi.
+## Key Sections
+- [Homepage](https://www.santoshladfoundation.org/): Leadership, public service initiatives, Labour Department programs, and Janatha Darshan.
+- [Latest Updates](https://www.santoshladfoundation.org/latest): Press releases, developmental updates, rescue operations, and community announcements.
+- [Photo & Media Gallery](https://www.santoshladfoundation.org/gallery): High-resolution imagery from public events, rescue initiatives, and constituency meetings.
+- [Interactive Timeline](https://www.santoshladfoundation.org/timeline): 3D visual journey through career milestones and public service history.
 
-## Key Information
-- **Role:** Minister for Labour, Government of Karnataka
-- **Constituency:** Kalaghatagi (Four-time elected MLA)
-- **Key Initiatives:** Labourer Welfare schemes, Disaster Relief Operations, Janatha Darshan Public Grievance redressal, Youth Empowerment & Skill Development.
+## Public Service & Key Focus Areas
+- **Labour Welfare:** Policy initiatives, worker protection, social security programs across Karnataka.
+- **Constituency Leadership:** Kalaghatagi developmental infrastructure, Janatha Darshan public grievance redressal.
+- **Disaster Response & Rescue:** High-visibility field leadership in national & regional rescue missions (Uttarakhand flood relief, Wayanad disaster response).
 
-## Main Links
-- [Home Page](https://www.santoshlad.com/) - Overview of public service, career background, and key initiatives.
-- [Latest Feed](https://www.santoshlad.com/latest) - Official news updates, press releases, public announcements, and activity reports.
-- [Gallery](https://www.santoshlad.com/gallery) - High-resolution press images and public event coverage.
-- [Timeline](https://www.santoshlad.com/timeline) - Historical overview of career milestones, legislative achievements, and public service record.
-
-## Contact & Public Grievance
-- **Janatha Darshan:** Direct public grievance hearings for constituents of Kalaghatagi and workers across Karnataka.
+## Organization & Contact Details
+- **Founder & Leader:** Santosh S. Lad
+- **Office:** Kalaghatagi, Dharwad District, Karnataka, India
+- **Official Domain:** https://www.santoshladfoundation.org/
