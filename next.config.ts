@@ -53,6 +53,50 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: "/Initiatives.html",
+        destination: "/#focus-areas",
+        permanent: true,
+      },
+      {
+        source: "/initiatives.html",
+        destination: "/#focus-areas",
+        permanent: true,
+      },
+      {
+        source: "/Initiatives",
+        destination: "/#focus-areas",
+        permanent: true,
+      },
+      {
+        source: "/initiatives",
+        destination: "/#focus-areas",
+        permanent: true,
+      },
+      {
+        source: "/About.html",
+        destination: "/#philosophy",
+        permanent: true,
+      },
+      {
+        source: "/about.html",
+        destination: "/#philosophy",
+        permanent: true,
+      },
+      {
+        source: "/Contact.html",
+        destination: "/#founder",
+        permanent: true,
+      },
+      {
+        source: "/contact.html",
+        destination: "/#founder",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
