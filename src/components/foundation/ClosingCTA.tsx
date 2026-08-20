@@ -4,6 +4,7 @@ import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/i18n/language';
 import { foundationContent } from '@/data/foundationContent';
+import Magnet from '@/components/ui/Magnet';
 
 interface ClosingCTAProps {
   onOpenJoin: () => void;
@@ -33,14 +34,16 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({ onOpenJoin }) => {
         </p>
 
         <div className="mt-8 flex items-center justify-center gap-4">
-          <button
-            onClick={onOpenJoin}
-            id="closing-cta-join-btn"
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#141414] text-[#F8F6F0] text-sm font-semibold tracking-wide hover:bg-[#2C2A26] transition-all cursor-pointer shadow-sm group"
-          >
-            <span>{t.buttonText}</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </button>
+          <Magnet padding={50} magnetStrength={3}>
+            <button
+              onClick={onOpenJoin}
+              id="closing-cta-join-btn"
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#141414] text-[#F8F6F0] text-sm font-semibold tracking-wide hover:bg-[#2C2A26] transition-all cursor-pointer shadow-sm group"
+            >
+              <span>{t.buttonText}</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </Magnet>
         </div>
 
       </div>

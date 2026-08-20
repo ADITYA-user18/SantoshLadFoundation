@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { X, Send, HeartHandshake, Users, Sparkles, MessageSquare, Loader2 } from 'lucide-react';
 import { useLanguage } from '@/i18n/language';
 import { foundationContent } from '@/data/foundationContent';
+import Magnet from '@/components/ui/Magnet';
 
 interface JoinModalProps {
   isOpen: boolean;
@@ -241,23 +242,25 @@ export const JoinModal: React.FC<JoinModalProps> = ({ isOpen, onClose }) => {
               </div>
 
               <div className="pt-2">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full py-3 rounded-full bg-[#141414] text-[#F8F6F0] text-xs font-semibold uppercase tracking-wider hover:bg-[#2C2A26] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm disabled:opacity-50"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                      <span>Sending...</span>
-                    </>
-                  ) : (
-                    <>
-                      <span>{t.submitBtn}</span>
-                      <Send className="w-3.5 h-3.5" />
-                    </>
-                  )}
-                </button>
+                <Magnet wrapperClassName="w-full" innerClassName="w-full" padding={40} magnetStrength={3}>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full py-3 rounded-full bg-[#141414] text-[#F8F6F0] text-xs font-semibold uppercase tracking-wider hover:bg-[#2C2A26] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm disabled:opacity-50"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Sending...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>{t.submitBtn}</span>
+                        <Send className="w-3.5 h-3.5" />
+                      </>
+                    )}
+                  </button>
+                </Magnet>
               </div>
             </form>
           )}

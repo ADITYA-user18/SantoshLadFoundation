@@ -7,6 +7,7 @@ import { ArrowRight, Menu, X } from 'lucide-react';
 import { useLanguage } from '@/i18n/language';
 import { foundationContent } from '@/data/foundationContent';
 import { LanguageSwitcher } from '@/components/site/LanguageSwitcher';
+import Magnet from '@/components/ui/Magnet';
 
 interface NavbarProps {
   onOpenJoin: () => void;
@@ -73,14 +74,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenJoin }) => {
             {t.founder}
           </Link>
 
-          <button
-            onClick={onOpenJoin}
-            id="nav-cta-join"
-            className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#141414] text-[#F8F6F0] hover:bg-[#2C2A26] transition-all cursor-pointer shadow-sm group shrink-0"
-          >
-            <span>{t.contactUs}</span>
-            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-          </button>
+          <Magnet padding={40} magnetStrength={3}>
+            <button
+              onClick={onOpenJoin}
+              id="nav-cta-join"
+              className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#141414] text-[#F8F6F0] hover:bg-[#2C2A26] transition-all cursor-pointer shadow-sm group shrink-0"
+            >
+              <span>{t.contactUs}</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
+          </Magnet>
 
           {/* Professional Circular Language Switcher */}
           <LanguageSwitcher />
