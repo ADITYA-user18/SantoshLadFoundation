@@ -36,17 +36,17 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
     <div className="bg-[#F8F6F0] text-[#141414]">
 
       {/* 1. INITIAL VIEWPORT FOLD (100vh) */}
-      <section className="min-h-screen min-h-[100dvh] pt-20 sm:pt-16 lg:pt-16 pb-24 sm:pb-24 lg:pb-28 flex flex-col justify-center sm:justify-start items-center text-center overflow-hidden px-4 sm:px-8 lg:px-12 relative">
-        <div className="max-w-4xl mx-auto flex flex-col items-center py-4 sm:py-2 my-auto sm:my-0">
+      <section className="min-h-screen min-h-[100dvh] pt-20 sm:pt-16 lg:pt-16 xl:pt-14 pb-24 sm:pb-24 lg:pb-28 xl:pb-20 flex flex-col justify-center sm:justify-start xl:justify-center items-center text-center overflow-hidden px-4 sm:px-8 lg:px-12 relative">
+        <div className="max-w-4xl xl:max-w-5xl mx-auto flex flex-col items-center py-4 sm:py-2 xl:py-4 my-auto sm:my-0 xl:my-auto">
 
           {/* Rotating Circular Hero Emblem with 2nd Image & Spinning Text */}
           <motion.div
             initial={{ opacity: 0, scale: 0.85, y: -10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="flex justify-center mb-4 sm:mb-5 lg:mb-6 relative"
+            className="flex justify-center mb-4 sm:mb-5 lg:mb-6 xl:mb-7 relative"
           >
-            <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-50 md:h-50 flex items-center justify-center group cursor-pointer select-none">
+            <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-50 md:h-50 xl:w-52 xl:h-52 2xl:w-56 2xl:h-56 flex items-center justify-center group cursor-pointer select-none">
               {/* Blue Circular Frame with Rotating White Text */}
               <div className="absolute inset-0 z-0 flex items-center justify-center">
                 {/* Outer Glow & Shadow */}
@@ -99,7 +99,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
               </div>
 
               {/* Central Rounded Person Portrait (2nd Image) */}
-              <div className="relative z-10 w-[96px] h-[96px] sm:w-[120px] sm:h-[120px] md:w-[136px] md:h-[136px] rounded-full overflow-hidden p-1 bg-white shadow-xl transition-transform duration-300 group-hover:scale-105 border-2 border-white/80">
+              <div className="relative z-10 w-[96px] h-[96px] sm:w-[120px] sm:h-[120px] md:w-[136px] md:h-[136px] xl:w-[144px] xl:h-[144px] 2xl:w-[156px] 2xl:h-[156px] rounded-full overflow-hidden p-1 bg-white shadow-xl transition-transform duration-300 group-hover:scale-105 border-2 border-white/80">
                 <img
                   src="/images/portraits/santosh-namaste-clean.png"
                   alt="Santosh Lad"
@@ -114,9 +114,9 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="mb-2 sm:mb-2.5"
+            className="mb-2 sm:mb-2.5 xl:mb-3"
           >
-            <span className="font-editorial text-lg sm:text-xl md:text-2xl text-[#5C5549] italic font-normal tracking-wide">
+            <span className="font-editorial text-lg sm:text-xl md:text-2xl xl:text-3xl text-[#5C5549] italic font-normal tracking-wide">
               {t.eyebrow}
             </span>
           </motion.div>
@@ -126,7 +126,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-semibold tracking-tight text-[#141414] leading-tight sm:leading-tight whitespace-normal max-w-3xl px-3"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-7xl font-sans font-semibold tracking-tight text-[#141414] leading-tight sm:leading-tight whitespace-normal max-w-3xl xl:max-w-4xl px-3"
           >
             {t.headlineLead}{' '}
             <span className="font-normal font-editorial italic text-[#38322B] block sm:inline mt-0.5 sm:mt-0">
@@ -150,7 +150,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="mt-3.5 sm:mt-4 text-sm sm:text-base text-[#666055] font-light max-w-xl leading-relaxed px-4 sm:px-0"
+            className="mt-3.5 sm:mt-4 xl:mt-6 text-sm sm:text-base xl:text-lg text-[#666055] font-light max-w-xl xl:max-w-2xl leading-relaxed px-4 sm:px-0"
           >
             {t.description}
           </motion.p>
@@ -159,7 +159,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-6 sm:mt-4 lg:mt-5 translate-y-0 sm:-translate-y-3 lg:-translate-y-4 flex items-center justify-center"
+            className="mt-6 sm:mt-4 lg:mt-5 xl:mt-8 translate-y-0 sm:-translate-y-3 lg:-translate-y-4 xl:translate-y-0 flex items-center justify-center"
           >
             <Magnet padding={50} magnetStrength={3}>
               <button
