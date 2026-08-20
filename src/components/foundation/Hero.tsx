@@ -31,8 +31,8 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
     <div className="bg-[#F8F6F0] text-[#141414]">
       
       {/* 1. INITIAL VIEWPORT FOLD (100vh) */}
-      <section className="min-h-screen min-h-[100dvh] pt-24 sm:pt-20 lg:pt-20 pb-28 sm:pb-28 lg:pb-36 flex flex-col justify-center items-center text-center overflow-hidden px-4 sm:px-8 lg:px-12 relative">
-        <div className="max-w-4xl mx-auto flex flex-col justify-center items-center my-auto py-2 sm:py-4">
+      <section className="min-h-screen min-h-[100dvh] pt-20 sm:pt-20 lg:pt-20 pb-36 sm:pb-28 lg:pb-36 flex flex-col justify-center items-center text-center overflow-hidden px-4 sm:px-8 lg:px-12 relative">
+        <div className="max-w-4xl mx-auto flex flex-col justify-center items-center my-auto pt-2 pb-16 sm:py-4">
           
           {/* Rotating Circular Hero Emblem with 2nd Image & Spinning Text */}
           <motion.div
@@ -41,7 +41,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
             transition={{ duration: 0.7 }}
             className="flex justify-center mb-3 sm:mb-5 lg:mb-6 relative"
           >
-            <div className="relative w-32 h-32 sm:w-44 sm:h-44 md:w-50 md:h-50 flex items-center justify-center group cursor-pointer select-none">
+            <div className="relative w-28 h-28 sm:w-44 sm:h-44 md:w-50 md:h-50 flex items-center justify-center group cursor-pointer select-none">
               {/* Blue Circular Frame with Rotating White Text */}
               <div className="absolute inset-0 z-0 flex items-center justify-center">
                 {/* Outer Glow & Shadow */}
@@ -94,7 +94,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
               </div>
 
               {/* Central Rounded Person Portrait (2nd Image) */}
-              <div className="relative z-10 w-[84px] h-[84px] sm:w-[120px] sm:h-[120px] md:w-[136px] md:h-[136px] rounded-full overflow-hidden p-1 bg-white shadow-xl transition-transform duration-300 group-hover:scale-105 border-2 border-white/80">
+              <div className="relative z-10 w-[74px] h-[74px] sm:w-[120px] sm:h-[120px] md:w-[136px] md:h-[136px] rounded-full overflow-hidden p-1 bg-white shadow-xl transition-transform duration-300 group-hover:scale-105 border-2 border-white/80">
                 <img
                   src="/images/portraits/santosh-namaste-clean.png"
                   alt="Santosh Lad"
@@ -121,7 +121,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-[26px] sm:text-4xl md:text-5xl lg:text-6xl font-sans font-semibold tracking-tight text-[#141414] leading-tight sm:leading-tight whitespace-normal max-w-3xl px-2"
+            className="text-[24px] sm:text-4xl md:text-5xl lg:text-6xl font-sans font-semibold tracking-tight text-[#141414] leading-tight sm:leading-tight whitespace-normal max-w-3xl px-2"
           >
             {t.headlineLead} <span className="font-normal font-editorial italic text-[#38322B] block sm:inline mt-0.5 sm:mt-0">{t.headlineItalic}</span>
           </motion.h1>
@@ -131,7 +131,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="mt-2.5 sm:mt-4 text-xs sm:text-base text-[#666055] font-light max-w-xl leading-relaxed px-4 sm:px-0"
+            className="mt-2 sm:mt-4 text-xs sm:text-base text-[#666055] font-light max-w-xl leading-relaxed px-4 sm:px-0"
           >
             {t.description}
           </motion.p>
@@ -141,7 +141,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-4 sm:mt-6 lg:mt-7 mb-14 sm:mb-0 flex items-center justify-center"
+            className="mt-4 sm:mt-6 lg:mt-7 mb-20 sm:mb-0 flex items-center justify-center"
           >
             <Magnet padding={50} magnetStrength={3}>
               <button
