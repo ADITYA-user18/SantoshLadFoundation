@@ -544,6 +544,9 @@ class App {
   isDown: boolean = false;
   start: number = 0;
 
+  isVisible: boolean = true;
+  observer?: IntersectionObserver;
+
   constructor(
     container: HTMLElement,
     {
@@ -567,8 +570,25 @@ class App {
     this.onResize();
     this.createGeometry();
     this.createMedias(items, bend, textColor, borderRadius, font);
+    this.setupObserver();
     this.update();
     this.addEventListeners();
+  }
+
+  setupObserver() {
+    if (typeof IntersectionObserver === 'undefined') return;
+    this.observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          this.isVisible = entry.isIntersecting;
+          if (this.isVisible && !this.raf) {
+            this.raf = window.requestAnimationFrame(this.update.bind(this));
+          }
+        });
+      },
+      { threshold: 0.01 }
+    );
+    this.observer.observe(this.container);
   }
 
   createRenderer() {
@@ -641,6 +661,10 @@ class App {
     this.isDown = true;
     this.scroll.position = this.scroll.current;
     this.start = 'touches' in e ? e.touches[0].clientX : e.clientX;
+    window.addEventListener('mousemove', this.boundOnTouchMove);
+    window.addEventListener('mouseup', this.boundOnTouchUp);
+    window.addEventListener('touchmove', this.boundOnTouchMove, { passive: true });
+    window.addEventListener('touchend', this.boundOnTouchUp);
   }
 
   onTouchMove(e: MouseEvent | TouchEvent) {
@@ -652,6 +676,10 @@ class App {
 
   onTouchUp() {
     this.isDown = false;
+    window.removeEventListener('mousemove', this.boundOnTouchMove);
+    window.removeEventListener('mouseup', this.boundOnTouchUp);
+    window.removeEventListener('touchmove', this.boundOnTouchMove);
+    window.removeEventListener('touchend', this.boundOnTouchUp);
     this.onCheck();
   }
 
@@ -708,6 +736,10 @@ class App {
   }
 
   update() {
+    if (!this.isVisible) {
+      this.raf = 0;
+      return;
+    }
     this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.ease);
     const direction = this.scroll.current > this.scroll.last ? 'right' : 'left';
     if (this.medias) {
@@ -727,34 +759,33 @@ class App {
     this.boundOnKeyDown = this.onKeyDown.bind(this);
 
     window.addEventListener('resize', this.boundOnResize);
-    window.addEventListener('mousewheel', this.boundOnWheel);
-    window.addEventListener('wheel', this.boundOnWheel);
-    window.addEventListener('mousedown', this.boundOnTouchDown);
-    window.addEventListener('mousemove', this.boundOnTouchMove);
-    window.addEventListener('mouseup', this.boundOnTouchUp);
-    window.addEventListener('touchstart', this.boundOnTouchDown);
-    window.addEventListener('touchmove', this.boundOnTouchMove);
-    window.addEventListener('touchend', this.boundOnTouchUp);
-
+    this.container.addEventListener('wheel', this.boundOnWheel, { passive: true });
+    this.container.addEventListener('mousedown', this.boundOnTouchDown);
+    this.container.addEventListener('touchstart', this.boundOnTouchDown, { passive: true });
     this.container?.addEventListener('keydown', this.boundOnKeyDown);
   }
 
   destroy() {
-    window.cancelAnimationFrame(this.raf);
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+    if (this.raf) {
+      window.cancelAnimationFrame(this.raf);
+      this.raf = 0;
+    }
     window.removeEventListener('resize', this.boundOnResize);
-    window.removeEventListener('mousewheel', this.boundOnWheel);
-    window.removeEventListener('wheel', this.boundOnWheel);
-    window.removeEventListener('mousedown', this.boundOnTouchDown);
     window.removeEventListener('mousemove', this.boundOnTouchMove);
     window.removeEventListener('mouseup', this.boundOnTouchUp);
-    window.removeEventListener('touchstart', this.boundOnTouchDown);
     window.removeEventListener('touchmove', this.boundOnTouchMove);
     window.removeEventListener('touchend', this.boundOnTouchUp);
+    if (this.container) {
+      this.container.removeEventListener('wheel', this.boundOnWheel);
+      this.container.removeEventListener('mousedown', this.boundOnTouchDown);
+      this.container.removeEventListener('touchstart', this.boundOnTouchDown);
+      this.container.removeEventListener('keydown', this.boundOnKeyDown);
+    }
     if (this.renderer && this.renderer.gl && this.renderer.gl.canvas.parentNode) {
       this.renderer.gl.canvas.parentNode.removeChild(this.renderer.gl.canvas as HTMLCanvasElement);
-    }
-    if (this.container) {
-      this.container.removeEventListener('keydown', this.boundOnKeyDown);
     }
   }
 }
