@@ -29,24 +29,24 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
 
   return (
     <div className="bg-[#F8F6F0] text-[#141414]">
-      
+
       {/* 1. INITIAL VIEWPORT FOLD (100vh) */}
-      <section className="min-h-screen min-h-[100dvh] pt-20 sm:pt-20 lg:pt-20 pb-36 sm:pb-28 lg:pb-36 flex flex-col justify-center items-center text-center overflow-hidden px-4 sm:px-8 lg:px-12 relative">
-        <div className="max-w-4xl mx-auto flex flex-col justify-center items-center my-auto py-2 sm:py-4">
-          
+      <section className="min-h-screen min-h-[100dvh] pt-20 sm:pt-16 lg:pt-16 pb-24 sm:pb-24 lg:pb-28 flex flex-col justify-center sm:justify-start items-center text-center overflow-hidden px-4 sm:px-8 lg:px-12 relative">
+        <div className="max-w-4xl mx-auto flex flex-col items-center py-4 sm:py-2 my-auto sm:my-0">
+
           {/* Rotating Circular Hero Emblem with 2nd Image & Spinning Text */}
           <motion.div
             initial={{ opacity: 0, scale: 0.85, y: -10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="flex justify-center mb-3 sm:mb-5 lg:mb-6 relative"
+            className="flex justify-center mb-4 sm:mb-5 lg:mb-6 relative"
           >
-            <div className="relative w-28 h-28 sm:w-44 sm:h-44 md:w-50 md:h-50 flex items-center justify-center group cursor-pointer select-none">
+            <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-50 md:h-50 flex items-center justify-center group cursor-pointer select-none">
               {/* Blue Circular Frame with Rotating White Text */}
               <div className="absolute inset-0 z-0 flex items-center justify-center">
                 {/* Outer Glow & Shadow */}
                 <div className="absolute inset-2 rounded-full bg-[#062058] shadow-[0_12px_32px_rgba(6,32,88,0.35)] transition-transform duration-500 group-hover:scale-105" />
-                
+
                 {/* SVG Rotating Text Ring */}
                 <svg
                   viewBox="0 0 200 200"
@@ -58,7 +58,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
                       d="M 100, 100 m -76, 0 a 76,76 0 1,1 152,0 a 76,76 0 1,1 -152,0"
                     />
                   </defs>
-                  
+
                   {/* Blue Ring Backdrop */}
                   <circle
                     cx="100"
@@ -94,7 +94,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
               </div>
 
               {/* Central Rounded Person Portrait (2nd Image) */}
-              <div className="relative z-10 w-[74px] h-[74px] sm:w-[120px] sm:h-[120px] md:w-[136px] md:h-[136px] rounded-full overflow-hidden p-1 bg-white shadow-xl transition-transform duration-300 group-hover:scale-105 border-2 border-white/80">
+              <div className="relative z-10 w-[96px] h-[96px] sm:w-[120px] sm:h-[120px] md:w-[136px] md:h-[136px] rounded-full overflow-hidden p-1 bg-white shadow-xl transition-transform duration-300 group-hover:scale-105 border-2 border-white/80">
                 <img
                   src="/images/portraits/santosh-namaste-clean.png"
                   alt="Santosh Lad"
@@ -109,9 +109,9 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="mb-1 sm:mb-2.5"
+            className="mb-2 sm:mb-2.5"
           >
-            <span className="font-editorial text-base sm:text-xl md:text-2xl text-[#5C5549] italic font-normal tracking-wide">
+            <span className="font-editorial text-lg sm:text-xl md:text-2xl text-[#5C5549] italic font-normal tracking-wide">
               {t.eyebrow}
             </span>
           </motion.div>
@@ -121,7 +121,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-semibold tracking-tight text-[#141414] leading-tight sm:leading-tight whitespace-normal max-w-3xl px-2"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-semibold tracking-tight text-[#141414] leading-tight sm:leading-tight whitespace-normal max-w-3xl px-3"
           >
             {t.headlineLead} <span className="font-normal font-editorial italic text-[#38322B] block sm:inline mt-0.5 sm:mt-0">{t.headlineItalic}</span>
           </motion.h1>
@@ -131,17 +131,16 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="mt-2 sm:mt-4 text-xs sm:text-base text-[#666055] font-light max-w-xl leading-relaxed px-4 sm:px-0"
+            className="mt-3.5 sm:mt-4 text-sm sm:text-base text-[#666055] font-light max-w-xl leading-relaxed px-4 sm:px-0"
           >
             {t.description}
           </motion.p>
 
-          {/* CTA Button */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-4 sm:mt-6 lg:mt-7 mb-24 sm:mb-0 flex items-center justify-center relative z-20"
+            className="mt-6 sm:mt-4 lg:mt-5 translate-y-0 sm:-translate-y-3 lg:-translate-y-4 flex items-center justify-center"
           >
             <Magnet padding={50} magnetStrength={3}>
               <button
