@@ -103,6 +103,10 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
                 <img
                   src="/images/portraits/santosh-namaste-clean.png"
                   alt="Santosh Lad"
+                  width={94}
+                  height={94}
+                  fetchPriority="high"
+                  decoding="async"
                   className="w-full h-full object-cover rounded-full"
                 />
               </div>

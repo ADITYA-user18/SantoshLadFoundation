@@ -87,6 +87,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenJoin }) => {
             <span className="text-xs text-[#736B5E] font-light mt-1 block">
               {tFoot.subhead}
             </span>
+            <a href="tel:+918362445566" className="text-xs text-[#736B5E] hover:underline font-light mt-1 block">
+              Office Tel: +91 836 244 5566
+            </a>
           </div>
 
           <div className="flex flex-wrap gap-6 sm:gap-8 text-xs uppercase tracking-widest font-medium text-[#524C42]">
