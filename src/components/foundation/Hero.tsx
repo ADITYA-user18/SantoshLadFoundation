@@ -36,17 +36,17 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
     <div className="bg-[#F8F6F0] text-[#141414]">
 
       {/* 1. INITIAL VIEWPORT FOLD (100vh) */}
-      <section className="min-h-screen min-h-[100dvh] pt-20 sm:pt-16 lg:pt-16 xl:pt-14 pb-24 sm:pb-24 lg:pb-28 xl:pb-20 flex flex-col justify-center sm:justify-start xl:justify-center items-center text-center overflow-hidden px-4 sm:px-8 lg:px-12 relative">
-        <div className="max-w-4xl xl:max-w-5xl mx-auto flex flex-col items-center py-4 sm:py-2 xl:py-4 my-auto sm:my-0 xl:my-auto">
+      <section className="min-h-screen min-h-[100dvh] pt-16 sm:pt-14 lg:pt-14 xl:pt-14 pb-20 sm:pb-20 lg:pb-20 xl:pb-20 flex flex-col justify-center items-center text-center overflow-hidden px-4 sm:px-8 lg:px-12 relative">
+        <div className="max-w-4xl xl:max-w-5xl mx-auto flex flex-col items-center py-2 my-auto">
 
           {/* Rotating Circular Hero Emblem with 2nd Image & Spinning Text */}
           <motion.div
             initial={{ opacity: 0, scale: 0.85, y: -10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="flex justify-center mb-4 sm:mb-5 lg:mb-6 xl:mb-7 relative"
+            className="flex justify-center mb-3 sm:mb-3 md:mb-4 lg:mb-4 xl:mb-5 2xl:mb-5 min-[1921px]:mb-7 relative"
           >
-            <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-50 md:h-50 xl:w-52 xl:h-52 2xl:w-56 2xl:h-56 flex items-center justify-center group cursor-pointer select-none">
+            <div className="relative w-36 h-36 sm:w-26 sm:h-26 md:w-28 md:h-28 lg:w-30 lg:h-30 xl:w-48 xl:h-48 2xl:w-48 2xl:h-48 min-[1921px]:w-56 min-[1921px]:h-56 flex items-center justify-center group cursor-pointer select-none">
               {/* Blue Circular Frame with Rotating White Text */}
               <div className="absolute inset-0 z-0 flex items-center justify-center">
                 {/* Outer Glow & Shadow */}
@@ -99,7 +99,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
               </div>
 
               {/* Central Rounded Person Portrait (2nd Image) */}
-              <div className="relative z-10 w-[96px] h-[96px] sm:w-[120px] sm:h-[120px] md:w-[136px] md:h-[136px] xl:w-[144px] xl:h-[144px] 2xl:w-[156px] 2xl:h-[156px] rounded-full overflow-hidden p-1 bg-white shadow-xl transition-transform duration-300 group-hover:scale-105 border-2 border-white/80">
+              <div className="relative z-10 w-[96px] h-[96px] sm:w-[70px] sm:h-[70px] md:w-[76px] md:h-[76px] lg:w-[82px] lg:h-[82px] xl:w-[132px] xl:h-[132px] 2xl:w-[132px] 2xl:h-[132px] min-[1921px]:w-[156px] min-[1921px]:h-[156px] rounded-full overflow-hidden p-1 bg-white shadow-xl transition-transform duration-300 group-hover:scale-105 border-2 border-white/80">
                 <img
                   src="/images/portraits/santosh-namaste-clean.png"
                   alt="Santosh Lad"
@@ -114,22 +114,22 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="mb-2 sm:mb-2.5 xl:mb-3"
+            className="mb-1.5 sm:mb-1.5 lg:mb-2 xl:mb-3"
           >
-            <span className="font-editorial text-lg sm:text-xl md:text-2xl xl:text-3xl text-[#5C5549] italic font-normal tracking-wide">
+            <span className="font-editorial text-lg sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-[#5C5549] italic font-normal tracking-wide">
               {t.eyebrow}
             </span>
           </motion.div>
 
-          {/* Major Headline */}
+          {/* Major Headline - Fixed height container to eliminate layout shift */}
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-7xl font-sans font-semibold tracking-tight text-[#141414] leading-tight sm:leading-tight whitespace-normal max-w-3xl xl:max-w-4xl px-3"
+            className="text-3xl sm:text-2xl md:text-3xl lg:text-[34px] xl:text-6xl 2xl:text-7xl font-sans font-semibold tracking-tight text-[#141414] leading-tight sm:leading-tight whitespace-normal max-w-3xl xl:max-w-4xl px-3 min-h-[2.4em] sm:min-h-[2.2em] lg:min-h-[2.2em] flex flex-col sm:flex-row items-center justify-center flex-wrap"
           >
-            {t.headlineLead}{' '}
-            <span className="font-normal font-editorial italic text-[#38322B] block sm:inline mt-0.5 sm:mt-0">
+            <span>{t.headlineLead}&nbsp;</span>
+            <span className="font-normal font-editorial italic text-[#38322B] inline-block text-center sm:text-left align-baseline whitespace-nowrap min-w-[8ch] sm:min-w-[12ch]">
               <TextType
                 key={locale}
                 as="span"
@@ -150,7 +150,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="mt-3.5 sm:mt-4 xl:mt-6 text-sm sm:text-base xl:text-lg text-[#666055] font-light max-w-xl xl:max-w-2xl leading-relaxed px-4 sm:px-0"
+            className="mt-2.5 sm:mt-2.5 lg:mt-3 xl:mt-3.5 2xl:mt-3.5 min-[1921px]:mt-6 text-sm sm:text-[11px] md:text-xs lg:text-sm xl:text-sm 2xl:text-sm min-[1921px]:text-lg text-[#666055] font-light max-w-lg lg:max-w-xl xl:max-w-xl min-[1921px]:max-w-2xl leading-relaxed px-4 sm:px-0"
           >
             {t.description}
           </motion.p>
@@ -159,7 +159,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-6 sm:mt-4 lg:mt-5 xl:mt-8 translate-y-0 sm:-translate-y-3 lg:-translate-y-4 xl:translate-y-0 flex items-center justify-center"
+            className="mt-4 sm:mt-3.5 lg:mt-4 xl:mt-7 2xl:mt-8 flex items-center justify-center"
           >
             <Magnet padding={50} magnetStrength={3}>
               <button
