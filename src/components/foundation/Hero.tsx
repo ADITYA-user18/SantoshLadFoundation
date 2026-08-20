@@ -30,21 +30,21 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
     <div className="bg-[#F8F6F0] text-[#141414]">
       
       {/* 1. INITIAL VIEWPORT FOLD (100vh) */}
-      <section className="min-h-screen min-h-[100dvh] pt-14 sm:pt-16 lg:pt-20 pb-28 sm:pb-32 lg:pb-40 flex flex-col justify-center items-center text-center overflow-hidden px-4 sm:px-8 lg:px-12 relative">
-        <div className="max-w-4xl mx-auto flex flex-col justify-center items-center my-auto pb-4 lg:pb-8">
+      <section className="min-h-screen min-h-[100dvh] pt-20 sm:pt-20 lg:pt-20 pb-20 sm:pb-28 lg:pb-36 flex flex-col justify-center items-center text-center overflow-hidden px-5 sm:px-8 lg:px-12 relative">
+        <div className="max-w-4xl mx-auto flex flex-col justify-center items-center my-auto py-2 sm:py-4">
           
           {/* Rotating Circular Hero Emblem with 2nd Image & Spinning Text */}
           <motion.div
             initial={{ opacity: 0, scale: 0.85, y: -10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="flex justify-center mb-3 sm:mb-4 lg:mb-5 relative"
+            className="flex justify-center mb-4 sm:mb-5 lg:mb-6 relative"
           >
-            <div className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 flex items-center justify-center group cursor-pointer select-none">
+            <div className="relative w-40 h-40 sm:w-44 sm:h-44 md:w-50 md:h-50 flex items-center justify-center group cursor-pointer select-none">
               {/* Blue Circular Frame with Rotating White Text */}
               <div className="absolute inset-0 z-0 flex items-center justify-center">
                 {/* Outer Glow & Shadow */}
-                <div className="absolute inset-2 rounded-full bg-[#062058] shadow-[0_10px_30px_rgba(6,32,88,0.35)] transition-transform duration-500 group-hover:scale-105" />
+                <div className="absolute inset-2 rounded-full bg-[#062058] shadow-[0_12px_32px_rgba(6,32,88,0.35)] transition-transform duration-500 group-hover:scale-105" />
                 
                 {/* SVG Rotating Text Ring */}
                 <svg
@@ -93,7 +93,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
               </div>
 
               {/* Central Rounded Person Portrait (2nd Image) */}
-              <div className="relative z-10 w-[88px] h-[88px] sm:w-[110px] sm:h-[110px] md:w-[130px] md:h-[130px] rounded-full overflow-hidden p-1 bg-white shadow-xl transition-transform duration-300 group-hover:scale-105 border-2 border-white/80">
+              <div className="relative z-10 w-[108px] h-[108px] sm:w-[120px] sm:h-[120px] md:w-[136px] md:h-[136px] rounded-full overflow-hidden p-1 bg-white shadow-xl transition-transform duration-300 group-hover:scale-105 border-2 border-white/80">
                 <img
                   src="/images/portraits/santosh-namaste-clean.png"
                   alt="Santosh Lad"
@@ -108,9 +108,9 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="mb-1 sm:mb-1.5"
+            className="mb-2 sm:mb-2.5"
           >
-            <span className="font-editorial text-base sm:text-xl md:text-2xl text-[#5C5549] italic font-normal tracking-wide">
+            <span className="font-editorial text-lg sm:text-xl md:text-2xl text-[#5C5549] italic font-normal tracking-wide">
               {t.eyebrow}
             </span>
           </motion.div>
@@ -120,9 +120,9 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-semibold tracking-tight text-[#141414] leading-tight whitespace-normal max-w-3xl"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-semibold tracking-tight text-[#141414] leading-[1.15] sm:leading-tight whitespace-normal max-w-3xl px-2"
           >
-            {t.headlineLead} <span className="font-normal font-editorial italic text-[#38322B]">{t.headlineItalic}</span>
+            {t.headlineLead} <span className="font-normal font-editorial italic text-[#38322B] block sm:inline mt-0.5 sm:mt-0">{t.headlineItalic}</span>
           </motion.h1>
 
           {/* Short Supporting Statement */}
@@ -130,7 +130,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="mt-2 sm:mt-3 text-xs sm:text-sm lg:text-base text-[#666055] font-light max-w-xl leading-relaxed"
+            className="mt-3 sm:mt-4 text-sm sm:text-base text-[#666055] font-light max-w-xl leading-relaxed px-4 sm:px-0"
           >
             {t.description}
           </motion.p>
@@ -140,12 +140,12 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-3.5 sm:mt-5 lg:mt-6 flex items-center justify-center"
+            className="mt-5 sm:mt-6 lg:mt-7 flex items-center justify-center"
           >
             <button
               onClick={onExploreWork}
               id="hero-cta-explore"
-              className="inline-flex items-center gap-3 px-6 sm:px-8 py-3 sm:py-3.5 rounded-full bg-[#141414] text-[#F8F6F0] text-xs sm:text-sm font-semibold tracking-wide hover:bg-[#2C2A26] transition-all cursor-pointer shadow-md group"
+              className="inline-flex items-center gap-3 px-7 sm:px-8 py-3.5 rounded-full bg-[#141414] text-[#F8F6F0] text-sm font-semibold tracking-wide hover:bg-[#2C2A26] transition-all cursor-pointer shadow-lg group"
             >
               <span>{t.exploreCta}</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
