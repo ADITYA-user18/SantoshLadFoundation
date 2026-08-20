@@ -8,6 +8,7 @@ import { useLanguage } from '@/i18n/language';
 import { foundationContent } from '@/data/foundationContent';
 import { LanguageSwitcher } from '@/components/site/LanguageSwitcher';
 import Magnet from '@/components/ui/Magnet';
+import LightRays from '@/components/ui/LightRays';
 
 interface NavbarProps {
   onOpenJoin: () => void;
@@ -40,6 +41,26 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenJoin }) => {
           : 'bg-transparent py-5'
       }`}
     >
+      {/* Black Light Rays centered in Navbar and cascading down onto the Logo */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[900px] h-[550px] pointer-events-none flex justify-center -z-10 overflow-hidden">
+        <div className="w-full h-full relative">
+          <LightRays
+            raysOrigin="top-center"
+            raysColor="#2d2d2d"
+            raysSpeed={1.5}
+            lightSpread={0.85}
+            rayLength={2.5}
+            followMouse={true}
+            mouseInfluence={0.35}
+            noiseAmount={0}
+            distortion={0}
+            className="custom-rays"
+            pulsating={false}
+            fadeDistance={1.2}
+            saturation={1}
+          />
+        </div>
+      </div>
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-6 relative flex items-center justify-between">
         
         {/* Left Navigation Links (Shifted further right towards middle element) */}
