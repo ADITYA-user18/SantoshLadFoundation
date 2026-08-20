@@ -31,8 +31,8 @@ export function BottomNavigation() {
       href: "/",
       label: ui.home,
       icon: House,
-      baseColor: "text-[#5C5549] dark:text-white/70 font-medium hover:text-[#141414]",
-      activeColor: "text-white dark:text-white font-semibold",
+      baseColor: "text-[#5C5549] font-medium hover:text-[#141414]",
+      activeColor: "text-white font-semibold",
       bubbleBg: "#141414", // Deep obsidian dark charcoal matching primary CTA
       hoverTextColor: "#ffffff",
       hoverIconColor: "#ffffff",
@@ -42,8 +42,8 @@ export function BottomNavigation() {
       href: "/latest",
       label: ui.latestFeed,
       icon: Newspaper,
-      baseColor: "text-[#5C5549] dark:text-white/70 font-medium hover:text-[#141414]",
-      activeColor: "text-white dark:text-white font-semibold",
+      baseColor: "text-[#5C5549] font-medium hover:text-[#141414]",
+      activeColor: "text-white font-semibold",
       bubbleBg: "#141414", // Deep obsidian dark charcoal matching primary CTA
       hoverTextColor: "#ffffff",
       hoverIconColor: "#ffffff",
@@ -53,8 +53,8 @@ export function BottomNavigation() {
       href: "/gallery",
       label: ui.gallery,
       icon: ImageIcon,
-      baseColor: "text-[#5C5549] dark:text-white/70 font-medium hover:text-[#141414]",
-      activeColor: "text-white dark:text-white font-semibold",
+      baseColor: "text-[#5C5549] font-medium hover:text-[#141414]",
+      activeColor: "text-white font-semibold",
       bubbleBg: "#141414", // Deep obsidian dark charcoal matching primary CTA
       hoverTextColor: "#ffffff",
       hoverIconColor: "#ffffff",
@@ -174,7 +174,7 @@ export function BottomNavigation() {
       style={{ paddingBottom: "max(1.25rem, env(safe-area-inset-bottom))" }}
     >
       <div
-        className="pointer-events-auto relative flex items-center gap-1 overflow-hidden rounded-full p-1.5 backdrop-blur-xl transition-colors duration-500 border border-[#141414]/15 bg-[#F8F6F0]/90 text-[#141414] shadow-[0_16px_48px_rgba(0,0,0,0.10)] dark:border-white/20 dark:bg-[#141414]/95 dark:text-white"
+        className="pointer-events-auto relative flex items-center gap-1 overflow-hidden rounded-full p-1.5 backdrop-blur-xl transition-colors duration-500 border border-[#E8E4D9] bg-[#FAF8F5]/95 text-[#141414] shadow-[0_16px_48px_rgba(0,0,0,0.10)]"
       >
         {items.map((item, i) => {
           const active = item.match(pathname);
