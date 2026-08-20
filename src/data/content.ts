@@ -1,5 +1,5 @@
 export const site = {
-  name: "Santosh S. Lad",
+  name: "Santosh Lad Foundation",
   monogram: "SL",
   role: "Minister for Labour, Government of Karnataka",
   shortRole: "Minister for Labour",

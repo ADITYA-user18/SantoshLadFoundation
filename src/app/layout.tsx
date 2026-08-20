@@ -36,20 +36,20 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.santoshlad.com"
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: `${site.name} | Minister for Labour, Government of Karnataka`,
-    template: `%s | ${site.name}`,
+    default: `Santosh Lad Foundation`,
+    template: `%s | Santosh Lad Foundation`,
   },
   description:
-    "Official website of Santosh S. Lad, Minister for Labour, Government of Karnataka, and four-time MLA from Kalaghatagi. Leadership rooted in service. Impact driven by action.",
+    "Official website of Santosh Lad Foundation and Santosh S. Lad, Minister for Labour, Government of Karnataka, and four-time MLA from Kalaghatagi. Leadership rooted in service. Impact driven by action.",
   alternates: {
     canonical: "./",
   },
   openGraph: {
-    title: `${site.name} | Minister for Labour, Karnataka`,
+    title: `Santosh Lad Foundation`,
     description:
-      "Leadership rooted in service. Impact driven by action. Minister for Labour, Government of Karnataka.",
+      "Leadership rooted in service. Impact driven by action. Santosh Lad Foundation.",
     url: baseUrl,
-    siteName: site.name,
+    siteName: "Santosh Lad Foundation",
     type: "website",
     locale: "en_IN",
     images: [
@@ -57,15 +57,15 @@ export const metadata: Metadata = {
         url: "/images/portraits/hero-podium.jpg",
         width: 1200,
         height: 630,
-        alt: `${site.name} - Minister for Labour, Government of Karnataka`,
+        alt: `Santosh Lad Foundation - Minister for Labour, Government of Karnataka`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} | Minister for Labour, Karnataka`,
+    title: `Santosh Lad Foundation`,
     description:
-      "Official website of Santosh S. Lad, Minister for Labour, Government of Karnataka.",
+      "Official website of Santosh Lad Foundation.",
     images: ["/images/portraits/hero-podium.jpg"],
   },
   robots: {
