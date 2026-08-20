@@ -7,6 +7,7 @@ import { useLanguage } from '@/i18n/language';
 import { foundationContent } from '@/data/foundationContent';
 import CircularGallery from '@/components/ui/CircularGallery';
 import Magnet from '@/components/ui/Magnet';
+import TextType from '@/components/ui/TextType';
 
 interface HeroProps {
   onExploreWork: () => void;
@@ -26,6 +27,10 @@ const GALLERY_ITEMS = [
 export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
   const { locale } = useLanguage();
   const t = foundationContent[locale].hero;
+
+  const headlinePhrases = locale === 'kn'
+    ? ["ನಿಮ್ಮೊಂದಿಗೆ.", "ಪ್ರತಿ ಕ್ಷಣದಲ್ಲೂ.", "ಪ್ರತಿ ಹೋರಾಟದಲ್ಲೂ.", "ಪ್ರತಿ ಜಯದಲ್ಲೂ."]
+    : ["every step.", "every journey.", "every struggle.", "every milestone."];
 
   return (
     <div className="bg-[#F8F6F0] text-[#141414]">
@@ -123,7 +128,21 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-semibold tracking-tight text-[#141414] leading-tight sm:leading-tight whitespace-normal max-w-3xl px-3"
           >
-            {t.headlineLead} <span className="font-normal font-editorial italic text-[#38322B] block sm:inline mt-0.5 sm:mt-0">{t.headlineItalic}</span>
+            {t.headlineLead}{' '}
+            <span className="font-normal font-editorial italic text-[#38322B] block sm:inline mt-0.5 sm:mt-0">
+              <TextType
+                key={locale}
+                as="span"
+                text={headlinePhrases}
+                typingSpeed={40}
+                deletingSpeed={25}
+                pauseDuration={2500}
+                showCursor
+                cursorCharacter="|"
+                cursorBlinkDuration={0.6}
+                loop
+              />
+            </span>
           </motion.h1>
 
           {/* Short Supporting Statement */}

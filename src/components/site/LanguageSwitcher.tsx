@@ -32,12 +32,12 @@ export function LanguageSwitcher({ className }: { className?: string }) {
       aria-label="Toggle language"
     >
       {locale === "en" ? (
-        <span className="font-bold text-[11px] tracking-wider uppercase leading-none">
-          EN
-        </span>
-      ) : (
         <span className="font-bold text-[16px] leading-none transition-transform duration-200">
           ಕ
+        </span>
+      ) : (
+        <span className="font-bold text-[11px] tracking-wider uppercase leading-none">
+          EN
         </span>
       )}
     </button>
