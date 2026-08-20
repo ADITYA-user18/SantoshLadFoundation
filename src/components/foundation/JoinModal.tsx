@@ -78,16 +78,16 @@ export const JoinModal: React.FC<JoinModalProps> = ({ isOpen, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/65 backdrop-blur-md animate-fadeIn">
+    <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-6 bg-black/80 backdrop-blur-md animate-fadeIn">
       <div
-        className="bg-[#F8F6F0] rounded-3xl max-w-xl w-full text-[#141414] relative shadow-2xl overflow-hidden border border-[#E8E4D9]"
+        className="bg-[#F8F6F0] w-full h-[100dvh] sm:h-auto sm:max-h-[90dvh] sm:max-w-xl sm:rounded-3xl text-[#141414] relative shadow-2xl overflow-hidden border-0 sm:border sm:border-[#E8E4D9] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="px-6 pt-8 pb-4 sm:px-8 relative border-b border-[#E8E4D9]">
+        <div className="px-5 pt-6 pb-4 sm:px-8 sm:pt-8 sm:pb-4 relative border-b border-[#E8E4D9] shrink-0 bg-[#F8F6F0] z-10">
           <button
             onClick={resetAndClose}
-            className="absolute top-6 right-6 p-2 rounded-full hover:bg-[#EAE4D9] text-[#141414] transition-colors cursor-pointer"
+            className="absolute top-5 right-5 sm:top-6 sm:right-6 p-2 rounded-full bg-[#EDE8DE] hover:bg-[#E2DCCF] text-[#141414] transition-colors cursor-pointer"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -96,7 +96,7 @@ export const JoinModal: React.FC<JoinModalProps> = ({ isOpen, onClose }) => {
           <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#857E74] block mb-1">
             {t.eyebrow}
           </span>
-          <h3 className="font-editorial text-3xl sm:text-4xl text-[#141414] font-medium tracking-tight">
+          <h3 className="font-editorial text-2xl sm:text-4xl text-[#141414] font-medium tracking-tight">
             {t.title}
           </h3>
           <p className="text-xs sm:text-sm text-[#666055] font-light mt-1 max-w-md">
@@ -105,7 +105,7 @@ export const JoinModal: React.FC<JoinModalProps> = ({ isOpen, onClose }) => {
         </div>
 
         {/* Content Body */}
-        <div className="p-6 sm:p-8">
+        <div className="p-5 sm:p-8 overflow-y-auto flex-1 pb-16 sm:pb-8">
           {submitted ? (
             <div className="py-8 text-center space-y-4 animate-fadeIn">
               <div className="w-14 h-14 rounded-full bg-[#E5DFD4] text-[#141414] flex items-center justify-center mx-auto">
