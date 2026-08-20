@@ -80,9 +80,9 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/images/brand/congress-hand.png",
-    shortcut: "/images/brand/congress-hand.png",
-    apple: "/images/brand/congress-hand.png",
+    icon: "/images/brand/favicon-circle.png",
+    shortcut: "/images/brand/favicon-circle.png",
+    apple: "/images/brand/favicon-circle.png",
   },
 };
 
@@ -136,7 +136,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         "@id": `${baseUrl}/#organization`,
         name: site.name,
         url: baseUrl,
-        logo: `${baseUrl}/images/brand/congress-hand.png`,
+        logo: `${baseUrl}/images/brand/favicon-circle.png`,
         sameAs: [
           "https://en.wikipedia.org/wiki/Santosh_Lad",
           "https://www.facebook.com/SantoshLadOfficial",

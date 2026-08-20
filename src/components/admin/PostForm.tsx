@@ -24,7 +24,6 @@ import { ImageUpload } from "@/components/admin/ImageUpload";
 import { CategorySelect } from "@/components/admin/CategorySelect";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { saveLocalPost } from "@/lib/custom-posts";
 
 interface PostFormProps {
   initial?: Partial<Post>;
@@ -189,12 +188,6 @@ export function PostForm({ initial, mode }: PostFormProps) {
       });
       const json = (await res.json()) as { ok?: boolean; error?: string; post?: Post };
       if (!res.ok) throw new Error(json.error ?? "Save failed");
-
-      // Save locally to guarantee persistence across serverless cold starts
-      const finalPost = json.post ?? (payload as Post);
-      if (finalPost.slug) {
-        saveLocalPost(finalPost);
-      }
 
       router.push("/admin/posts");
       router.refresh();

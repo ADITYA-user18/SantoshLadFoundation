@@ -43,10 +43,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenJoin }) => {
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-6 relative flex items-center justify-between">
         
         {/* Left Navigation Links (Shifted further right towards middle element) */}
-        <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-xs uppercase tracking-widest font-medium text-[#4A453E] lg:pl-24">
-          <Link href={getHref('#philosophy')} className="hover:text-[#141414] transition-colors">{t.philosophy}</Link>
-          <Link href={getHref('#focus-areas')} className="hover:text-[#141414] transition-colors">{t.focusAreas}</Link>
-          <Link href={getHref('#chapters')} className="hover:text-[#141414] transition-colors">{t.stories}</Link>
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-xs uppercase tracking-widest font-bold text-[#141414] lg:pl-24">
+          <Link href={getHref('#philosophy')} className="hover:text-[#062058] transition-colors">{t.philosophy}</Link>
+          <Link href={getHref('#focus-areas')} className="hover:text-[#062058] transition-colors">{t.focusAreas}</Link>
+          <Link href={getHref('#chapters')} className="hover:text-[#062058] transition-colors">{t.stories}</Link>
         </nav>
 
         {/* Absolutely Centered Brand Title */}
@@ -54,23 +54,23 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenJoin }) => {
           href="/"
           className="text-center group focus:outline-none lg:absolute lg:left-1/2 lg:-translate-x-1/2"
         >
-          <span className="font-editorial text-xl sm:text-2xl tracking-tight text-[#141414] block leading-none">
+          <span className="font-editorial font-bold text-xl sm:text-2xl tracking-tight text-[#141414] block leading-none">
             {t.brandTitle}
           </span>
-          <span className="text-[9px] uppercase tracking-[0.25em] text-[#857E74] block mt-0.5 font-sans-clean font-medium">
+          <span className="text-[9px] uppercase tracking-[0.25em] text-[#5C5549] block mt-0.5 font-sans-clean font-bold">
             {t.brandSubtitle}
           </span>
         </Link>
 
         {/* Right Navigation Links & Primary CTA & Language Switcher */}
         <div className="hidden lg:flex items-center gap-5 xl:gap-6 ml-auto">
-          <Link href={getHref('#impact')} className="text-xs uppercase tracking-widest font-medium text-[#4A453E] hover:text-[#141414] transition-colors">
+          <Link href={getHref('#impact')} className="text-xs uppercase tracking-widest font-bold text-[#141414] hover:text-[#062058] transition-colors">
             {t.impact}
           </Link>
-          <Link href={getHref('#crisis')} className="text-xs uppercase tracking-widest font-medium text-[#4A453E] hover:text-[#141414] transition-colors">
+          <Link href={getHref('#crisis')} className="text-xs uppercase tracking-widest font-bold text-[#141414] hover:text-[#062058] transition-colors">
             {t.relief}
           </Link>
-          <Link href={getHref('#founder')} className="text-xs uppercase tracking-widest font-medium text-[#4A453E] hover:text-[#141414] transition-colors">
+          <Link href={getHref('#founder')} className="text-xs uppercase tracking-widest font-bold text-[#141414] hover:text-[#062058] transition-colors">
             {t.founder}
           </Link>
 
@@ -78,7 +78,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenJoin }) => {
             <button
               onClick={onOpenJoin}
               id="nav-cta-join"
-              className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#141414] text-[#F8F6F0] hover:bg-[#2C2A26] transition-all cursor-pointer shadow-sm group shrink-0"
+              className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#141414] text-[#F8F6F0] hover:bg-[#2C2A26] transition-all cursor-pointer shadow-sm group shrink-0"
             >
               <span>{t.contactUs}</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
@@ -106,7 +106,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenJoin }) => {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-[#F8F6F0] border-b border-[#E8E4D9] px-6 py-6 space-y-4 animate-fadeIn">
-          <div className="space-y-3 text-sm uppercase tracking-wider font-medium text-[#4A453E]">
+          <div className="space-y-3 text-sm uppercase tracking-wider font-bold text-[#141414]">
             <Link href={getHref('#philosophy')} onClick={() => setMobileMenuOpen(false)} className="block py-1">{t.philosophy}</Link>
             <Link href={getHref('#focus-areas')} onClick={() => setMobileMenuOpen(false)} className="block py-1">{t.focusAreas}</Link>
             <Link href={getHref('#impact')} onClick={() => setMobileMenuOpen(false)} className="block py-1">{t.impact}</Link>

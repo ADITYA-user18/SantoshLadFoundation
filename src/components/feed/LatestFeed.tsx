@@ -15,11 +15,6 @@ export function LatestFeed({ posts: initialPosts }: { posts: Post[] }) {
   const { ui } = useContent();
 
   useEffect(() => {
-    // Clear legacy browser local storage cache
-    try {
-      localStorage.removeItem("sl_custom_posts");
-    } catch {}
-
     fetch("/api/posts")
       .then((res) => res.json())
       .then((data: { posts?: Post[] }) => {

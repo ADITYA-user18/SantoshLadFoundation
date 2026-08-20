@@ -1,35 +1,24 @@
 import type { Post } from "@/types/post";
 
-const STORAGE_KEY = "sl_custom_posts";
+/**
+ * All admin-posted posts and gallery items are fetched and managed
+ * exclusively via MongoDB Atlas database API endpoints (/api/admin/posts and /api/posts).
+ * LocalStorage usage for dynamic admin content is disabled.
+ */
 
 export function getLocalPosts(): Post[] {
-  if (typeof window === "undefined") return [];
-  try {
-    // Clear legacy local storage so old cached feed data is removed completely
-    localStorage.removeItem(STORAGE_KEY);
-    return [];
-  } catch {
-    return [];
-  }
+  return [];
 }
 
-export function saveLocalPost(post: Post): void {
-  // Posts are stored strictly in the database (MongoDB) via API
+export function saveLocalPost(_post: Post): void {
+  // Posts are stored strictly in MongoDB Atlas database
 }
 
-export function removeLocalPost(slug: string): void {
-  // Posts are managed strictly via MongoDB API
+export function removeLocalPost(_slug: string): void {
+  // Posts are managed strictly in MongoDB Atlas database
 }
 
-export function mergePosts(serverPosts: Post[], localPosts: Post[]): Post[] {
-  const map = new Map<string, Post>();
-  for (const post of serverPosts) {
-    map.set(post.slug, post);
-  }
-  for (const post of localPosts) {
-    map.set(post.slug, post);
-  }
-  return Array.from(map.values()).sort(
-    (a, b) => new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime()
-  );
+export function mergePosts(serverPosts: Post[], _localPosts: Post[]): Post[] {
+  return serverPosts;
 }
+

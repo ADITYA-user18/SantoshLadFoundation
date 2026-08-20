@@ -10,8 +10,6 @@ import { FEED_CATEGORIES } from "@/types/post";
 import type { Post } from "@/types/post";
 import { cn } from "@/lib/utils";
 
-import { getLocalPosts, mergePosts, removeLocalPost } from "@/lib/custom-posts";
-
 const statusFilters = ["All", "published", "draft"] as const;
 const destFilters = ["All", "FEED", "GALLERY", "BOTH"] as const;
 
@@ -28,11 +26,9 @@ export default function AdminPostsPage() {
     try {
       const res = await fetch("/api/admin/posts");
       const data = (await res.json()) as { posts: Post[] };
-      const local = getLocalPosts();
-      setPosts(mergePosts(data.posts ?? [], local));
+      setPosts(data.posts ?? []);
     } catch {
-      const local = getLocalPosts();
-      setPosts(local);
+      setPosts([]);
     } finally {
       setLoading(false);
     }
@@ -43,7 +39,6 @@ export default function AdminPostsPage() {
   }, []);
 
   async function handleDelete(slug: string) {
-    removeLocalPost(slug);
     await fetch(`/api/admin/posts/${slug}`, { method: "DELETE" });
     void load();
   }

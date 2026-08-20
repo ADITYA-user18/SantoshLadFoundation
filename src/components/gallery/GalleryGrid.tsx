@@ -37,11 +37,6 @@ export function GalleryGrid() {
   const [dynamicPosts, setDynamicPosts] = useState<Post[]>([]);
 
   useEffect(() => {
-    // Clear legacy browser local storage cache
-    try {
-      localStorage.removeItem("sl_custom_posts");
-    } catch {}
-
     async function loadGalleryPosts() {
       try {
         const res = await fetch("/api/posts");

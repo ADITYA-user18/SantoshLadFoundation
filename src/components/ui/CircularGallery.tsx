@@ -121,8 +121,8 @@ function getFontSize(font: string): number {
 function createTextTexture(
   gl: GL,
   text: string,
-  font: string = 'bold 30px monospace',
-  color: string = 'black'
+  font: string = 'bold 32px Figtree, sans-serif',
+  color: string = '#FFFFFF'
 ): { texture: Texture; width: number; height: number } {
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d');
@@ -132,17 +132,37 @@ function createTextTexture(
   const metrics = context.measureText(text);
   const textWidth = Math.ceil(metrics.width);
   const fontSize = getFontSize(font);
-  const textHeight = Math.ceil(fontSize * 1.2);
+  const textHeight = Math.ceil(fontSize * 1.3);
 
-  canvas.width = textWidth + 20;
+  canvas.width = textWidth + 48;
   canvas.height = textHeight + 20;
 
+  context.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Sleek dark pill backdrop inside bottom of image card
+  context.fillStyle = 'rgba(15, 23, 42, 0.85)';
+  const radius = 14;
+  const w = canvas.width;
+  const h = canvas.height;
+  context.beginPath();
+  context.moveTo(radius, 0);
+  context.lineTo(w - radius, 0);
+  context.quadraticCurveTo(w, 0, w, radius);
+  context.lineTo(w, h - radius);
+  context.quadraticCurveTo(w, h, w - radius, h);
+  context.lineTo(radius, h);
+  context.quadraticCurveTo(0, h, 0, h - radius);
+  context.lineTo(0, radius);
+  context.quadraticCurveTo(0, 0, radius, 0);
+  context.closePath();
+  context.fill();
+
+  // White text centered
   context.font = font;
-  context.fillStyle = color;
+  context.fillStyle = '#FFFFFF';
   context.textBaseline = 'middle';
   context.textAlign = 'center';
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  context.fillText(text, canvas.width / 2, canvas.height / 2);
+  context.fillText(text, canvas.width / 2, canvas.height / 2 + 1);
 
   const texture = new Texture(gl, { generateMipmaps: false });
   texture.image = canvas;
@@ -167,7 +187,7 @@ class Title {
   font: string;
   mesh!: Mesh;
 
-  constructor({ gl, plane, renderer, text, textColor = '#545050', font = '30px sans-serif' }: TitleProps) {
+  constructor({ gl, plane, renderer, text, textColor = '#FFFFFF', font = '30px sans-serif' }: TitleProps) {
     autoBind(this);
     this.gl = gl;
     this.plane = plane;
@@ -182,6 +202,8 @@ class Title {
     const { texture, width, height } = createTextTexture(this.gl, this.text, this.font, this.textColor);
     const geometry = new Plane(this.gl);
     const program = new Program(this.gl, {
+      depthTest: false,
+      depthWrite: false,
       vertex: `
         attribute vec3 position;
         attribute vec2 uv;
@@ -199,7 +221,7 @@ class Title {
         varying vec2 vUv;
         void main() {
           vec4 color = texture2D(tMap, vUv);
-          if (color.a < 0.1) discard;
+          if (color.a < 0.05) discard;
           gl_FragColor = color;
         }
       `,
@@ -207,11 +229,15 @@ class Title {
       transparent: true
     });
     this.mesh = new Mesh(this.gl, { geometry, program });
+    
+    // In local space of parent plane [-0.5 to +0.5]:
     const aspect = width / height;
-    const textHeightScaled = this.plane.scale.y * 0.13;
-    const textWidthScaled = textHeightScaled * aspect;
-    this.mesh.scale.set(textWidthScaled, textHeightScaled, 1);
-    this.mesh.position.y = -this.plane.scale.y * 0.5 - textHeightScaled * 0.5 - 0.05;
+    const hRel = 0.095; // 9.5% of card height
+    // Convert 2D texture aspect ratio to parent local plane X scale (750 / 470)
+    const wRel = hRel * aspect * (750 / 470);
+
+    this.mesh.scale.set(Math.min(wRel, 0.88), hRel, 1);
+    this.mesh.position.set(0, -0.37, 0.02);
     this.mesh.setParent(this.plane);
   }
 }
@@ -460,9 +486,13 @@ class Media {
         this.plane.program.uniforms.uViewportSizes.value = [this.viewport.width, this.viewport.height];
       }
     }
-    // Sleek tall portrait cards (470 x 820 ratio) matching reference image aspect ratio
-    this.scale = (this.screen.height / 1300) * 1.15;
-    this.plane.scale.y = (this.viewport.height * (820 * this.scale)) / this.screen.height;
+    // Sleek tall portrait cards matching reference image aspect ratio across all screen sizes
+    const isMobile = this.screen.width < 640;
+    const baseScale = isMobile ? 1.25 : 1.05;
+    this.scale = isMobile
+      ? (this.screen.height / 1300) * baseScale
+      : Math.min(1.12, (this.screen.height / 1300) * baseScale);
+    this.plane.scale.y = (this.viewport.height * (750 * this.scale)) / this.screen.height;
     this.plane.scale.x = (this.viewport.width * (470 * this.scale)) / this.screen.width;
     this.plane.program.uniforms.uPlaneSizes.value = [this.plane.scale.x, this.plane.scale.y];
     this.padding = 0.45;
