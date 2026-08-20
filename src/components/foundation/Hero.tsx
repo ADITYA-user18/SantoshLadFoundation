@@ -32,7 +32,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
       
       {/* 1. INITIAL VIEWPORT FOLD (100vh) */}
       <section className="min-h-screen min-h-[100dvh] pt-20 sm:pt-20 lg:pt-20 pb-36 sm:pb-28 lg:pb-36 flex flex-col justify-center items-center text-center overflow-hidden px-4 sm:px-8 lg:px-12 relative">
-        <div className="max-w-4xl mx-auto flex flex-col justify-center items-center my-auto pt-2 pb-16 sm:py-4">
+        <div className="max-w-4xl mx-auto flex flex-col justify-center items-center my-auto py-2 sm:py-4">
           
           {/* Rotating Circular Hero Emblem with 2nd Image & Spinning Text */}
           <motion.div
@@ -109,7 +109,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="mb-1.5 sm:mb-2.5"
+            className="mb-1 sm:mb-2.5"
           >
             <span className="font-editorial text-base sm:text-xl md:text-2xl text-[#5C5549] italic font-normal tracking-wide">
               {t.eyebrow}
@@ -121,7 +121,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-[24px] sm:text-4xl md:text-5xl lg:text-6xl font-sans font-semibold tracking-tight text-[#141414] leading-tight sm:leading-tight whitespace-normal max-w-3xl px-2"
+            className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-semibold tracking-tight text-[#141414] leading-tight sm:leading-tight whitespace-normal max-w-3xl px-2"
           >
             {t.headlineLead} <span className="font-normal font-editorial italic text-[#38322B] block sm:inline mt-0.5 sm:mt-0">{t.headlineItalic}</span>
           </motion.h1>
@@ -141,7 +141,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-4 sm:mt-6 lg:mt-7 mb-20 sm:mb-0 flex items-center justify-center"
+            className="mt-4 sm:mt-6 lg:mt-7 mb-24 sm:mb-0 flex items-center justify-center relative z-20"
           >
             <Magnet padding={50} magnetStrength={3}>
               <button
