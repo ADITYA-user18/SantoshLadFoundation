@@ -30,17 +30,17 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
     <div className="bg-[#F8F6F0] text-[#141414]">
       
       {/* 1. INITIAL VIEWPORT FOLD (100vh) */}
-      <section className="min-h-screen min-h-[100dvh] pt-16 sm:pt-20 lg:pt-24 pb-20 sm:pb-24 flex flex-col justify-center items-center text-center overflow-hidden px-4 sm:px-8 lg:px-12 relative">
-        <div className="max-w-4xl mx-auto flex flex-col justify-center items-center my-auto">
+      <section className="min-h-screen min-h-[100dvh] pt-14 sm:pt-16 lg:pt-20 pb-28 sm:pb-32 lg:pb-40 flex flex-col justify-center items-center text-center overflow-hidden px-4 sm:px-8 lg:px-12 relative">
+        <div className="max-w-4xl mx-auto flex flex-col justify-center items-center my-auto pb-4 lg:pb-8">
           
           {/* Rotating Circular Hero Emblem with 2nd Image & Spinning Text */}
           <motion.div
             initial={{ opacity: 0, scale: 0.85, y: -10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="flex justify-center mb-4 sm:mb-6 relative"
+            className="flex justify-center mb-3 sm:mb-4 lg:mb-5 relative"
           >
-            <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 flex items-center justify-center group cursor-pointer select-none">
+            <div className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 flex items-center justify-center group cursor-pointer select-none">
               {/* Blue Circular Frame with Rotating White Text */}
               <div className="absolute inset-0 z-0 flex items-center justify-center">
                 {/* Outer Glow & Shadow */}
@@ -93,7 +93,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
               </div>
 
               {/* Central Rounded Person Portrait (2nd Image) */}
-              <div className="relative z-10 w-[96px] h-[96px] sm:w-[120px] sm:h-[120px] md:w-[140px] md:h-[140px] rounded-full overflow-hidden p-1 bg-white shadow-xl transition-transform duration-300 group-hover:scale-105 border-2 border-white/80">
+              <div className="relative z-10 w-[88px] h-[88px] sm:w-[110px] sm:h-[110px] md:w-[130px] md:h-[130px] rounded-full overflow-hidden p-1 bg-white shadow-xl transition-transform duration-300 group-hover:scale-105 border-2 border-white/80">
                 <img
                   src="/images/portraits/santosh-namaste-clean.png"
                   alt="Santosh Lad"
@@ -108,7 +108,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="mb-1.5 sm:mb-2"
+            className="mb-1 sm:mb-1.5"
           >
             <span className="font-editorial text-base sm:text-xl md:text-2xl text-[#5C5549] italic font-normal tracking-wide">
               {t.eyebrow}
@@ -130,7 +130,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="mt-2.5 sm:mt-4 text-xs sm:text-sm lg:text-base text-[#666055] font-light max-w-xl leading-relaxed"
+            className="mt-2 sm:mt-3 text-xs sm:text-sm lg:text-base text-[#666055] font-light max-w-xl leading-relaxed"
           >
             {t.description}
           </motion.p>
@@ -140,7 +140,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onOpenJoin }) => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-4 sm:mt-6 flex items-center justify-center"
+            className="mt-3.5 sm:mt-5 lg:mt-6 flex items-center justify-center"
           >
             <button
               onClick={onExploreWork}
