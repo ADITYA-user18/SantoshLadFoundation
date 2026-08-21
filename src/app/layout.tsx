@@ -86,12 +86,12 @@ export const metadata: Metadata = {
       { url: "/images/brand/favicon-48.png", sizes: "48x48", type: "image/png" },
       { url: "/images/brand/favicon-96.png", sizes: "96x96", type: "image/png" },
       { url: "/images/brand/favicon-192.png", sizes: "192x192", type: "image/png" },
-      { url: "/images/brand/favicon-circle.png", sizes: "512x512", type: "image/png" },
+      { url: "/images/brand/foundation-seal.png", sizes: "512x512", type: "image/png" },
     ],
     shortcut: "/favicon.ico",
     apple: [
       { url: "/images/brand/favicon-192.png", sizes: "192x192", type: "image/png" },
-      { url: "/images/brand/favicon-circle.png", sizes: "512x512", type: "image/png" },
+      { url: "/images/brand/foundation-seal.png", sizes: "512x512", type: "image/png" },
     ],
   },
 };
@@ -149,7 +149,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         "@id": `${baseUrl}/#organization`,
         name: site.name,
         url: baseUrl,
-        logo: `${baseUrl}/images/brand/favicon-circle.png`,
+        logo: `${baseUrl}/images/brand/foundation-seal.png`,
         sameAs: [
           "https://en.wikipedia.org/wiki/Santosh_Lad",
           "https://www.wikidata.org/wiki/Q7420658",
@@ -191,8 +191,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="/images/brand/favicon-48.png" type="image/png" sizes="48x48" />
         <link rel="icon" href="/images/brand/favicon-96.png" type="image/png" sizes="96x96" />
         <link rel="icon" href="/images/brand/favicon-192.png" type="image/png" sizes="192x192" />
-        <link rel="icon" href="/images/brand/favicon-circle.png" type="image/png" sizes="512x512" />
-        <link rel="apple-touch-icon" href="/images/brand/favicon-circle.png" />
+        <link rel="icon" href="/images/brand/foundation-seal.png" type="image/png" sizes="512x512" />
+        <link rel="apple-touch-icon" href="/images/brand/foundation-seal.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
