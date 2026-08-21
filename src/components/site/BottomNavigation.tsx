@@ -19,6 +19,9 @@ const EASE = "power3.out";
  */
 export function BottomNavigation() {
   const pathname = usePathname();
+  const pathnameRef = useRef(pathname);
+  pathnameRef.current = pathname;
+
   const { ui } = useContent();
   const { resolvedTheme } = useTheme();
 
@@ -105,7 +108,7 @@ export function BottomNavigation() {
 
         tlRefs.current[i] = tl;
 
-        if (items[i].match(pathname)) {
+        if (items[i].match(pathnameRef.current)) {
           tl.progress(1);
         } else {
           tl.progress(0);
@@ -143,18 +146,21 @@ export function BottomNavigation() {
   }, [pathname]);
 
   const handleEnter = (i: number) => {
-    const tl = tlRefs.current[i];
-    if (!tl) return;
-    tweenRefs.current[i]?.kill();
-    tweenRefs.current[i] = tl.tweenTo(tl.duration(), {
-      duration: 0.28,
-      ease: EASE,
-      overwrite: "auto",
-    });
+    // Only animate hover expansion on real mouse/pointer devices, not touch scroll events
+    if (typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches) {
+      const tl = tlRefs.current[i];
+      if (!tl) return;
+      tweenRefs.current[i]?.kill();
+      tweenRefs.current[i] = tl.tweenTo(tl.duration(), {
+        duration: 0.28,
+        ease: EASE,
+        overwrite: "auto",
+      });
+    }
   };
 
   const handleLeave = (i: number) => {
-    const active = items[i].match(pathname);
+    const active = items[i].match(pathnameRef.current);
     if (active) return; // Keep active item's bubble fixed!
 
     const tl = tlRefs.current[i];
