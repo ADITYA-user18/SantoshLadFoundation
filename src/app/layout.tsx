@@ -81,9 +81,18 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/images/brand/favicon-circle.png",
-    shortcut: "/images/brand/favicon-circle.png",
-    apple: "/images/brand/favicon-circle.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/images/brand/favicon-48.png", sizes: "48x48", type: "image/png" },
+      { url: "/images/brand/favicon-96.png", sizes: "96x96", type: "image/png" },
+      { url: "/images/brand/favicon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/images/brand/favicon-circle.png", sizes: "512x512", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: [
+      { url: "/images/brand/favicon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/images/brand/favicon-circle.png", sizes: "512x512", type: "image/png" },
+    ],
   },
 };
 
@@ -178,6 +187,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://fonts.googleapis.com/css2?family=Audiowide&family=Baloo+Bhai+2:wght@400..800&family=Iosevka+Charon:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
           rel="stylesheet"
         />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/images/brand/favicon-48.png" type="image/png" sizes="48x48" />
+        <link rel="icon" href="/images/brand/favicon-96.png" type="image/png" sizes="96x96" />
+        <link rel="icon" href="/images/brand/favicon-192.png" type="image/png" sizes="192x192" />
+        <link rel="icon" href="/images/brand/favicon-circle.png" type="image/png" sizes="512x512" />
+        <link rel="apple-touch-icon" href="/images/brand/favicon-circle.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

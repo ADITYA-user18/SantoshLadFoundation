@@ -13,7 +13,7 @@ export const foundationContent = {
     },
     hero: {
       eyebrow: "Santosh Lad Foundation",
-      headlineLead: "Standing beside you,",
+      headlineLead: "Standing beside,",
       headlineItalic: "every step.",
       description:
         "For more than 25 years, Santosh S. Lad has worked with one conviction at heart: every person deserves dignity, opportunity, and someone who will stand beside them when it matters most.",
