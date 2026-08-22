@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation';
 import { ArrowRight, Menu, X } from 'lucide-react';
 import { useLanguage } from '@/i18n/language';
 import { foundationContent } from '@/data/foundationContent';
-import { LanguageSwitcher } from '@/components/site/LanguageSwitcher';
 import Magnet from '@/components/ui/Magnet';
 import LightRays from '@/components/ui/LightRays';
 
@@ -105,15 +104,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenJoin }) => {
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
           </Magnet>
-
-          {/* Professional Circular Language Switcher */}
-          <LanguageSwitcher />
         </div>
 
         {/* Mobile / Tablet Actions */}
         <div className="flex lg:hidden items-center gap-3 ml-auto">
-          <LanguageSwitcher />
-
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-2 text-[#141414] hover:bg-[#EAE4D9] rounded-lg transition-colors focus:outline-none"

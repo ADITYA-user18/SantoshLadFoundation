@@ -3,7 +3,6 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { LanguageToggle } from "@/components/site/LanguageToggle";
 import { ThemeToggle } from "@/components/site/ThemeToggle";
 import { useContent } from "@/i18n/language";
 
@@ -29,7 +28,6 @@ export default function TimelinePage() {
 
         <div className="pointer-events-auto flex items-center gap-3 shrink-0">
           <ThemeToggle />
-          <LanguageToggle />
         </div>
       </header>
 

@@ -24,12 +24,6 @@ let currentLocale: Locale = "en";
 const listeners = new Set<() => void>();
 
 function readStoredLocale(): Locale {
-  try {
-    const stored = window.localStorage.getItem(STORAGE_KEY);
-    if (stored === "en" || stored === "kn") return stored;
-  } catch {
-    /* ignore */
-  }
   return "en";
 }
 
